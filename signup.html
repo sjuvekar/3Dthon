@@ -363,13 +363,6 @@
           margin: 0 auto 20px;
         }
         
-        .linediv-l {
-          border-right: 1px solid;
-        }
-          
-        .linediv-r {
-          border-left: 1px solid;
-        }
       }
       
       
@@ -420,6 +413,19 @@
           line-height: 1.5;
         }
         
+      }
+
+      @media (max-width: 480px) {
+        .linediv-l {
+          border-bottom: 1px solid;
+        }
+          
+        .linediv-r {
+          border-top: 1px solid;
+        }
+      }
+
+      @media (min-width: 481px) {
         .linediv-l {
           border-right: 1px solid;
         }
@@ -452,13 +458,6 @@
               color: #555555;
           }
           
-          .linediv-l {
-              border-right: 1px solid;
-          } 
-          
-          .linediv-r {
-              border-left: 1px solid;
-          }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
     </script>

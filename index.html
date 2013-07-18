@@ -466,7 +466,7 @@
       /* RESPONSIVE CSS
       -------------------------------------------------- */
       
-      @media (max-width: 979px) {
+      @media (max-width: 2000px) {
       
         .container.navbar-wrapper {
           margin-bottom: 0;
@@ -499,14 +499,7 @@
           max-width: 40%;
           margin: 0 auto 20px;
         }
-        
-        .linediv-l {
-          border-right: 1px solid;
-        }
-          
-        .linediv-r {
-          border-left: 1px solid;
-        }
+              
       }
       
       
@@ -558,6 +551,19 @@
           line-height: 1.5;
         }
         
+      }
+      
+      @media (max-width: 480px) {
+        .linediv-l {
+          border-bottom: 1px solid;
+        }
+          
+        .linediv-r {
+          border-top: 1px solid;
+        }
+      }
+
+      @media (min-width: 481px) {
         .linediv-l {
           border-right: 1px solid;
         }
@@ -566,7 +572,7 @@
           border-left: 1px solid;
         }
       }
-      
+
        /* Video and pitch and action */
           .pitch {
               padding: 2.5% 0%;
@@ -590,15 +596,7 @@
               color: #555555;
           }
           
-          .linediv-l {
-              border-right: 1px solid;
-          } 
-          
-          .linediv-r {
-              border-left: 1px solid;
-          }
-
-	  /* FAQ */
+          /* FAQ */
 	  .accordion-heading a {
 	      color: #666666;
 	      font-size: 18px;

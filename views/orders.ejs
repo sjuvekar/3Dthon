@@ -4,12 +4,24 @@
     <meta charset="utf-8">
     <title>Orders</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-combined.no-icons.min.css">
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css">
     <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fjquery.js"></script>
     <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap.js"></script>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
   </head>
   <body>
+    <div class="container">
+      <div class="navbar-wrapper">
+	<div class="navbar navbar-inverse">
+    	  <div class="navbar-inner">
+    	    <a class="brand" href="/">3Dthon</a>
+	  </div>
+	</div>
+      </div>
+
+
     <div class="container">
       <h2>Coinbase orders</h2>
       <table class="table table-striped">
@@ -28,6 +40,7 @@
              <% } %>
       </table>
       <a href="/refresh_orders">Refresh orders from coinbase</a>
+    </div>
     </div>
   </body>
 </html>

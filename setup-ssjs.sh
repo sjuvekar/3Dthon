@@ -12,9 +12,9 @@ npm install
 ## heroku create
 ## ssh-keygen -t rsa
 ## heroku keys:add
-heroku addons:add heroku-postgresql:dev
-heroku pg:promote `heroku config  | grep HEROKU_POSTGRESQL | cut -f1 -d':'`
-heroku plugins:install git://github.com/ddollar/heroku-config.git
+heroku addons:add heroku-postgresql:dev --app the-3d-thon
+heroku pg:promote `heroku config --app the-3d-thon | grep HEROKU_POSTGRESQL | cut -f1 -d':'` --app the-3d-thon
+heroku plugins:install git://github.com/ddollar/heroku-config.git --app the-3d-thon
 
 # Set up heroku configuration variables
 # https://devcenter.heroku.com/articles/config-vars

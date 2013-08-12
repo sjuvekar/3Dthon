@@ -19,7 +19,7 @@ app.set('port', process.env.PORT || 8080);
 
 
 //var app = express.createServer(express.logger());
-//app.use(express.static(__dirname + "/assets"));
+app.use(express.static(__dirname + "/assets"));
 
 // Main page
 app.get('/', function(request, response) {
@@ -40,10 +40,10 @@ app.get('/dashboard', function(request, response) {
 });
 
 
-var port = process.env.PORT || 8080;
-app.listen(port, function() {
-  console.log("Listening on " + port);
-});
+//var port = process.env.PORT || 8080;
+//app.listen(port, function() {
+//  console.log("Listening on " + port);
+//});
 
 // Code from bitstarter-ssjs-db. Adding orders to Database
 // Render example.com/orders

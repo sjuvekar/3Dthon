@@ -15,6 +15,7 @@ var async   = require('async')
 var htmlfile = "index.html";
 var signupfile = "signup.html";
 var dashboardfile = "dashboard.html";
+var privacyfile = "privacy.html";
 
 var app = express();
 app.set('views', __dirname + '/views');
@@ -126,6 +127,12 @@ app.get('/signup', function(request, response) {
 // User dashboard
 app.get('/dashboard', function(request, response) {
   var dash = fs.readFileSync(dashboardfile).toString();
+  response.send(dash);
+});
+
+// Privacy policy
+app.get('/dashboard', function(request, response) {
+  var dash = fs.readFileSync(privacyfile).toString();
   response.send(dash);
 });
 

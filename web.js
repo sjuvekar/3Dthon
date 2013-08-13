@@ -5,7 +5,11 @@ var async   = require('async')
   , fs      = require('fs')
   , http    = require('http')
   , https   = require('https')
-  , db      = require('./models');
+  , db      = require('./models')
+  , passport = require('passport')
+  , TwitterStrategy = require('passport-twitter').Strategy
+  , FacebookStrategy = require('passport-facebook').Strategy
+  , GoogleStrategy = require('passport-google').Strategy
 
 // Variable devclaration
 var htmlfile = "index.html";
@@ -17,9 +21,95 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.set('port', process.env.PORT || 8080);
 
+// Passport js configuration
+app.use(express.static(__dirname + "/assets"));
+app.use(express.cookieParser());
+app.use(express.bodyParser());
+app.use(express.session({ secret: 'keyboard cat' }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Facebook tokens
+var FACEBOOK_APP_ID = "229360377211071";
+var FACEBOOK_APP_SECRET = "aa889325d8827bf0c4cfb15e27563a7f";
+ 
+// Twitter tokens
+var TWITTER_CONSUMER_KEY = "xZzbfaqkOUXct33iISyAw";
+var TWITTER_CONSUMER_SECRET = "pRXO9XQVrtmfwE97IC73CWJuyklOcqXwRZb8Aenxs";
+
+// Passport js sessions
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+ 
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
+
+// Facebook login strategy
+passport.use(new FacebookStrategy({
+    clientID: FACEBOOK_APP_ID,
+    clientSecret: FACEBOOK_APP_SECRET,
+    callbackURL: "/auth/facebook/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+      var user = profile;
+      return done(null, user);
+  }
+));
+
+
+// Twitter login Strategy
+passport.use(new TwitterStrategy({
+    consumerKey: TWITTER_CONSUMER_KEY,
+    consumerSecret: TWITTER_CONSUMER_SECRET,
+    callbackURL: "/auth/twitter/callback"
+  },
+  function(token, tokenSecret, profile, done) {
+    // NOTE: You'll probably want to associate the Twitter profile with a
+    //       user record in your application's DB.
+    var user = profile;
+    return done(null, user);
+  }
+));
+
+
+// Google login strategy
+passport.use(new GoogleStrategy({
+    returnURL: "http://www.3dthon.com/auth/google/callback",
+    realm: "http://www.3dthon.com/"
+  },
+  function(identifier, profile, done) {
+      var user = profile; 
+      return done(null, user);
+  }
+));
+
+
+// Facebook login and callbacks
+app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook/callback', passport.authenticate('facebook', { 
+    successReturnToOrRedirect: '/dashboard', 
+    failureRedirect: '/signup' 
+}));
+
+
+// Twitter login and callbacks
+app.get('/auth/twitter', passport.authenticate('twitter'));
+app.get('/auth/twitter/callback', passport.authenticate('twitter', { 
+    successReturnToOrRedirect: '/dashboard', 
+    failureRedirect: '/signup' 
+}));
+
+// Google login and callbacks
+app.get('/auth/google', passport.authenticate('google'));
+app.get('/auth/google/callback', passport.authenticate('google', { 
+    successReturnToOrRedirect: '/dashboard', 
+    failureRedirect: '/signup' 
+}));
 
 //var app = express.createServer(express.logger());
-app.use(express.static(__dirname + "/assets"));
+
 
 // Main page
 app.get('/', function(request, response) {

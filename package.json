@@ -9,7 +9,10 @@
     "ejs": "~0.8.4",
     "express": "~3.3.4",
     "async": "~0.2.9",
-    "passport": "*"
+    "passport": "0.1.16",
+    "passport-twitter":"0.1.4",
+    "passport-google":"0.3.0",
+    "passport-facebook":"0.1.5"
   },
   "engines": {
     "node": "0.10.12",

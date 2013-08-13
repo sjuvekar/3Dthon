@@ -50,7 +50,7 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET,
-    callbackURL: "/auth/facebook/callback"
+    callbackURL: "http://www.3dthon.com/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {
       var user = profile;

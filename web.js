@@ -16,6 +16,7 @@ var htmlfile = "index.html";
 var signupfile = "signup.html";
 var dashboardfile = "dashboard.html";
 var privacyfile = "privacy.html";
+var termsfile = "terms.html";
 
 var app = express();
 app.set('views', __dirname + '/views');
@@ -131,11 +132,16 @@ app.get('/dashboard', function(request, response) {
 });
 
 // Privacy policy
-app.get('/dashboard', function(request, response) {
+app.get('/privacy', function(request, response) {
   var dash = fs.readFileSync(privacyfile).toString();
   response.send(dash);
 });
 
+// Terms
+app.get('/terms', function(request, response) {
+  var dash = fs.readFileSync(termsfile).toString();
+  response.send(dash);
+});
 
 //var port = process.env.PORT || 8080;
 //app.listen(port, function() {

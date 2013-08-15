@@ -125,6 +125,12 @@ app.get('/signup', function(request, response) {
   response.send(sgnup);
 });
 
+// Signout page
+app.get('/signout', function(request, response) {
+  request.logout();
+  response.redirect("/");
+});
+
 // User dashboard
 app.get('/dashboard', function(request, response) {
   var dash = fs.readFileSync(dashboardfile).toString();

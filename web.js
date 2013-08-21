@@ -32,12 +32,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Facebook tokens
-var FACEBOOK_APP_ID = "229360377211071";
-var FACEBOOK_APP_SECRET = "aa889325d8827bf0c4cfb15e27563a7f";
+var FACEBOOK_APP_ID = process.env.FACEBOOK_APP_ID;
+var FACEBOOK_APP_SECRET = process.env.FACEBOOK_APP_SECRET;
  
 // Twitter tokens
-var TWITTER_CONSUMER_KEY = "xZzbfaqkOUXct33iISyAw";
-var TWITTER_CONSUMER_SECRET = "pRXO9XQVrtmfwE97IC73CWJuyklOcqXwRZb8Aenxs";
+var TWITTER_CONSUMER_KEY = process.env.TWITTER_CONSUMER_KEY;
+var TWITTER_CONSUMER_SECRET = process.env.TWITTER_CONSUMER_SECRET;
 
 // Passport js sessions
 passport.serializeUser(function(user, done) {

@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      3Dthon: Turning 3D printing into competition
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic" rel="stylesheep" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800" rel="stylesheep" type="text/css">
+    <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fsocial-buttons.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+
+    <style>
+      body { 
+	padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif; 
+      }
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js">
+      </script>
+    <![endif]-->
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+    <style>
+    </style>
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-42897946-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+
+  </head>
+  <body>
+    <div class="navbar-wrapper">
+    	<div class="container">
+    		<div class="navbar navbar-inverse">
+    			<div class="navbar-inner">
+    				<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+    					<span class="icon-bar"></span>
+    					<span class="icon-bar"></span>
+    					<span class="icon-bar"></span>
+    				</button>
+    				<a class="brand" href="#">3Dthon</a>
+    				<div class="nav-collapse collapse">
+    					<ul class="nav">
+    						<li class="active">
+    							<a href="#">Home</a>
+    						</li>
+    						<li>
+    							<a href="/signup">Sign Up</a>
+    						</li>
+    						<li>
+    							<a href="/signup">Sign In</a>
+    						</li>
+    						<li>
+    							<a href="#collapseOne">FAQ</a>
+    						</li>
+              					<li>
+							<a href="/orders">Orders</a>
+						</li>
+    						<li>
+    							<a href="http://blog.3dthon.com" target="none">Blog</a>
+    						</li>
+    						<li class="dropdown">
+    							<a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
+    							<ul class="dropdown-menu">
+    								<li>
+    									<a href="/dashboard">Competitions</a>
+    								</li>
+    								<li>
+    									<a href="/dashboard">User Rankings</a>
+    								</li>
+    								<li>
+    									<a href="/dashboard">Forums</a>
+    								</li>
+    							</ul>
+    						</li>
+    					</ul>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    <div id="myCarousel" class="container carousel slide" data-pause="remove">
+    	<div class="carousel-inner">
+    		<div class="item active" style="background-image: url('https://dl.dropboxusercontent.com/u/69791784/3Dthon/assets/img/main-background.png')"> 
+    			<div class="container">
+    				<div class="carousel-caption">
+    					<h1>
+    						3Dthon: Turning 3D printing into competition
+    					</h1>
+    					<p class="lead" style="color: #222222">
+    						...where 3D printing meets creative talent...
+    					</p>
+    					<a class="btn btn-large btn-primary" href="/signup">Sign up today</a>
+    					<a class="btn btn-large btn-primary" href="/signup">Sign in</a>
+    				</div>
+    			</div>
+    		</div>
+    		<div class="item" style="background-image: url('https://dl.dropboxusercontent.com/u/69791784/3Dthon/assets/img/printer-background.png')">
+    			<div class="container">
+			        <div class="carousel-caption">
+				  <a class="btn btn-large btn-primary" href="/signup">Sign up today</a>
+    				  <a class="btn btn-large btn-primary" href="/signup">Sign in</a>
+				  <p class="lead">
+				      <br />
+				      Host competitions
+				      <br />
+				      Compete and win prizes
+				  </p>
+    				</div>
+    			</div>
+    		</div>
+    		
+    	</div>
+    	<a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+    	<a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+    </div>
+    <div class="container marketing">
+    	<div class="row">
+    		<div class="span6">
+    			<!-- We use placehold.it for video pitch -->
+    			<div class="span5 sponsor">
+			  <div class="row-fluid">
+			    <div class="span4">
+			      <img src="https://dl.dropboxusercontent.com/u/69791784/3Dthon/assets/img/active-contests.png" alt="active-icon">
+			      <a class="btn btn-large btn-primary" href="/dashboard">
+			      	Active Contests
+			      </a>
+			    </div>
+			    <div class="span4">
+			      <img src="https://dl.dropboxusercontent.com/u/69791784/3Dthon/assets/img/user-ranking.png" alt="user-icon">
+			      <a class="btn btn-large btn-primary" href="/dashboard">
+			      	User Rankings
+			      </a>
+			    </div>
+			    <div class="span4">
+			      <img src="https://dl.dropboxusercontent.com/u/69791784/3Dthon/assets/img/host-contest.png" alt="host-icon">
+			      <a class="btn btn-large btn-primary" href="/dashboard">
+			      	Host a Contest
+			      </a>
+			    </div>
+			  </div>
+    			</div>
+    		</div>
+    		<!-- /.span6 -->
+    		<div class="span6 actions">
+    			<div class="row-fluid statistics">
+    				<!-- Statistics -->
+    				<div class="span4">
+    					<div class="linediv-l">
+    						<h3>
+    							<%= backers %>
+    						</h3>
+    						<p>
+						  <h4>
+    							backers
+						  </h4>
+    						</p>
+    					</div>
+    				</div>
+    				<div class="span4">
+    					<div class="linediv-c">
+    						<h3>
+    							<%= bitcoins %>
+    						</h3>
+    						<p>
+						  <h4>
+						    Bitcoins
+						  </h4>
+    						</p>
+    					</div>
+    				</div>
+    				<div class="span4">
+    					<div class="linediv-r">
+    						<h3>
+    							&infin;
+    						</h3>
+    						<p>
+						  <h4>
+    							days left
+						  </h4>
+    						</p>
+    					</div>
+    				</div>
+    				<!-- Bootstrap progress bar -->
+				<div class="row-fluid">
+    				  <div class="span10 offset1">
+    					<div class="thermometer progress active">
+    						<div class="bar" style="width: 60%;">
+    						</div>
+    						<div class="bar bar-warning" style="width: 40%;">
+    						</div>
+    					</div>
+    				  </div>
+				</div>
+
+				<div class="span6 offset3 order">
+				  <a class="coinbase-button" data-code="dc2295e10867efc84f5bd01e6ecd8750" 
+				     data-button-style="custom_large" 
+				     data-button-text="Pledge with Bitcoin"
+				     href="https://coinbase.com/checkouts/dc2295e10867efc84f5bd01e6ecd8750">
+				    Pledge With Bitcoin
+				  </a>
+				  <script src="https://coinbase.com/assets/button.js" type="text/javascript"></script>
+				</div>
+
+    				<!-- AddThis Button BEGIN -->
+				<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+				  <a class="addthis_button_preferred_1"></a>
+				  <a class="addthis_button_preferred_2"></a>
+				  <a class="addthis_button_compact"></a>
+				  <a class="addthis_counter addthis_bubble_style"></a>
+				  <!-- Place this code where you want the badge to render. -->
+				  <a href="//plus.google.com/b/105110122203783219477/105110122203783219477?prsrc=3"
+				     rel="publisher" target="_top" style="text-decoration:none;">
+				    <img src="//ssl.gstatic.com/images/icons/gplus-32.png" alt="Google+" style="border:0;width:32px;height:32px;"/>
+				  </a>
+				</div>
+				<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+				<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51fa8a5c592496a2"></script>
+				<!-- AddThis Button END -->
+
+    			</div>
+    		</div>
+    		<!-- /.span6 -->
+    	</div>
+    	<hr class="featurette-divider">
+    	<div class="featurette">
+    		<img class="featurette-image pull-right" src="https://dl.dropboxusercontent.com/u/69791784/3Dthon/assets/img/3d_printer.png" alt="3d-printer">
+    		<h2 class="featurette-heading">
+    			Have a 3D printer?
+    			<span class="muted">Want to create something that people will use?</span> Want to win prizes?
+    		</h2>
+    		<p class="lead">
+    			<b> 3Dthon</b>
+    			will allow you to use your 3D printing resources and talent to compete
+    			and create things that people want.
+    			<span class="muted">No signing fees, no limit on the number of competitions!</span>
+    			Sign up today to compete and win prizes!
+    		</p>
+    	</div>
+    	<hr class="featurette-divider">
+    	<div class="featurette">
+    		<img class="featurette-image pull-left" src="https://dl.dropboxusercontent.com/u/69791784/3Dthon/assets/img/people.png" alt="people">
+    		<h2 class="featurette-heading">
+    			<span class="muted"><font color="#5a5a5a">Have a brilliant product in mind?&nbsp;</font>Want some of the best people to build it for you?</span>
+    		</h2>
+    		<p class="lead">
+    			Create a competition on
+    			<b>3Dthon</b>
+    			. You decide the prizes, you decide the winner! No sign-up fees! No limit
+    			on the number of competitions! Sign-up today and start posting your competitions!
+    		</p>
+    	</div>
+	
+    	<hr class="featurette-divider">
+    	<div class="featurette">
+
+	  <h1 class="featurette-heading pagination-centered">
+	      Spread the word... Follow us!
+	  </h1>
+
+	  <div class="row-fluid">
+	    <div class="span4">
+	      <a href="http://facebook.com/3Dthon" target="none">
+		<img src="https://dl.dropboxusercontent.com/u/69791784/3Dthon/assets/img/facebook-icon.png" alt="facebook">
+	      </a>
+	    </div>
+	    <div class="span4">
+	      <a href="http://twitter.com/3Dthon" target="none">
+		<img src="https://dl.dropboxusercontent.com/u/69791784/3Dthon/assets/img/twitter-icon.png" alt="twitter">
+	      </a>
+	    </div>
+	    <div class="span4">
+	      <a href="https://plus.google.com/b/105110122203783219477/105110122203783219477" target="none">
+		<img src="https://dl.dropboxusercontent.com/u/69791784/3Dthon/assets/img/google-icon.png" alt="google">
+	      </a>
+	    </div>
+	    
+	  </div>
+	</div>
+    	
+	<hr class="featurette-divider">
+    	
+        <!-- For the FAQ, we introduce a little bit of JS, using the accordion,
+    	using jquery -->
+        <h2 class="featurette-heading">
+        	FAQ
+    	</h2>	
+    	<div class="row-fluid faq">
+    		<div class="accordion" id="accordion2">
+    			<div class="accordion-group">
+    				<div class="accordion-heading">
+    					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2 " href="#collapseOne">
+    		                What is 3Dthon?
+    	                </a>
+    				</div>
+    				<div id="collapseOne" class="accordion-body collapse">
+    					<div class="accordion-inner">
+    						3Dthon is a place where people can host and compete in 3D printing challenges. The hosts submit their challenge in words/pictures/videos, might provide information for relevant template objects and set-up timelines and prizes on the challenge. Competitors are required to build the required product in the given timeline and submit all relevant information of the product to the hosts. All winning competitors must also ship their winning products to the competition hosts.
+    					</div>
+    				</div>
+    			</div>
+    			
+                <div class="accordion-group">
+    				<div class="accordion-heading">
+    					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2 " href="#collapseTwo">
+    		                Who can compete and host competitions?
+    	                </a>
+    				</div>
+    				<div id="collapseTwo" class="accordion-body collapse">
+    					<div class="accordion-inner">
+    						Anyone can compete in the competitions. Similarly, anyone can host a competition. all participants must a working prototype of the product in order to be considered for the prize. All winners must independently ship their winning products to the competition hosts. They must also transfer all relevant templates to the hosts.
+    					</div>
+    				</div>
+    			</div>
+                
+                <div class="accordion-group">
+        			<div class="accordion-heading">
+    					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2 " href="#collapseThree">
+    		                How should we submit the solution and what are the winning criteria for the competitions?
+    	                </a>
+    				</div>
+    				<div id="collapseThree" class="accordion-body collapse">
+    					<div class="accordion-inner">
+    						In most of the competitions, the participants must submit a video and/or a set of images showing their finished products. The participants must also submit videos and/or pictures of all required templates. 
+    					</div>
+    				</div>
+    			</div>
+                
+                <div class="accordion-group">
+            		<div class="accordion-heading">
+    					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2 " href="#collapseFour">
+    		                Who decides the winner and prizes for the competitions?
+    	                </a>
+    				</div>
+    				<div id="collapseFour" class="accordion-body collapse">
+    					<div class="accordion-inner">
+    						The right to decide winners lies solely with the competition hosts. The hosts can set-up any prize on a competition.
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    	<hr class="featurette-divider">
+    	<footer>
+    		<p class="pull-right">
+    			<a href="# ">Back to top</a>
+    		</p>
+    		<p>
+    			© RamSud Labs, 2013 ·
+    			<a href="/privacy">Privacy</a>
+    			·
+    			<a href="/terms">Terms</a>
+    		</p>
+    	</footer>
+    </div>
+
+    <style>
+      
+      /* GLOBAL STYLES
+      -------------------------------------------------- */
+      /* Lighter body text */
+      
+      body {
+        color: #5a5a5a;
+      }
+      
+      
+      
+      /* CUSTOMIZE THE NAVBAR
+      -------------------------------------------------- */
+      
+      /* Special class on .container surrounding .navbar, used for positioning it into place. */
+      .navbar-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        margin-top: 20px;
+        margin-bottom: -90px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
+      }
+      
+      /* Remove border and change up box shadow for more contrast */
+      .navbar .navbar-inner {
+        border: 0;
+        -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.25);
+        -moz-box-shadow: 0 2px 10px rgba(0,0,0,.25);
+        box-shadow: 0 2px 10px rgba(0,0,0,.25);
+      }
+      
+      /* Downsize the brand/project name a bit */
+      .navbar .brand {
+        padding: 14px 20px 16px; /* Increase vertical padding to match navbar links */
+        font-size: 16px;
+        font-weight: bold;
+        text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+      }
+      
+      /* Navbar links: increase padding for taller navbar */
+      .navbar .nav > li > a {
+        padding: 15px 20px;
+      }
+      
+      /* Offset the responsive button for proper vertical alignment */
+      .navbar .btn-navbar {
+        margin-top: 10px;
+      }
+      
+      
+      
+      /* CUSTOMIZE THE CAROUSEL
+      -------------------------------------------------- */
+      
+      /* Carousel base class */
+      .carousel {
+        margin-bottom: 60px;
+      }
+      
+      .carousel .container {
+        position: relative;
+        z-index: 9;
+      }
+      
+      .carousel-control {
+        height: 80px;
+        margin-top: 0;
+        font-size: 120px;
+        text-shadow: 0 1px 1px rgba(0,0,0,.4);
+        background-color: transparent;
+        border: 0;
+        z-index: 10;
+      }
+      
+      .carousel .item {
+        height: 500px;
+        background-position: center top;
+        background-repeat: no-repeat;
+        background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+      }
+      
+      .carousel-caption {
+        background-color: transparent;
+        position: static;
+        max-width: 550px;
+        padding: 0 20px;
+        margin-top: 200px;
+        margin-left: 5%;
+      }
+      
+      .carousel-caption h1,
+      .carousel-caption .lead {
+        margin: 0;
+        line-height: 1.25;
+        color: #fff;
+        text-shadow: 0 1px 1px rgba(0,0,0,.4);
+      }
+      
+      .carousel-caption .btn {
+        margin-top: 10px;
+      }
+      
+      
+      
+      /* MARKETING CONTENT
+      -------------------------------------------------- */
+      
+      /* Center align the text within the three columns below the carousel */
+      .marketing .span4 {
+        text-align: center;
+      }
+      
+      .marketing h2 {
+        font-weight: normal;
+      }
+      
+      .marketing .span4 p {
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+      
+      
+      /* Featurettes
+      ------------------------- */
+      
+      .featurette-divider {
+        margin: 80px 0; /* Space out the Bootstrap <hr> more */
+      }
+      
+      .featurette {
+        padding-top: 120px; /* Vertically center images part 1: add padding above and below text. */
+        overflow: hidden; /* Vertically center images part 2: clear their floats. */
+      }
+      
+      .featurette-image {
+        margin-top: -120px; /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
+      }
+      
+      /* Give some space on the sides of the floated elements so text doesn't run right into it. */
+      .featurette-image.pull-left {
+        margin-right: 40px;
+      }
+      
+      .featurette-image.pull-right {
+        margin-left: 40px;
+      }
+      
+      /* Thin out the marketing headings */
+      .featurette-heading {
+        font-size: 50px;
+        font-weight: 300;
+        line-height: 1;
+        letter-spacing: -1px;
+	'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      
+      
+      
+      /* RESPONSIVE CSS
+      -------------------------------------------------- */
+      
+      @media (max-width: 980px) {
+      
+        .container.navbar-wrapper {
+          margin-bottom: 0;
+          width: auto;
+        }
+      
+        .navbar-inner {
+          border-radius: 0;
+          margin: -20px 0;
+        }
+      
+        .carousel .item {
+          height: 500px;
+        }
+      
+        .carousel img {
+          width: auto;
+          height: 500px;
+        }
+      
+        .featurette {
+          height: auto;
+          padding: 0;
+        }
+      
+        .featurette-image.pull-left,
+        .featurette-image.pull-right {
+          display: block;
+          float: none;
+          max-width: 40%;
+          margin: 0 auto 20px;
+        }
+              
+      }
+      
+      
+      @media (max-width: 767px) {
+      
+        .navbar-inner {
+          margin: -20px;
+        }
+      
+        .carousel {
+          margin-left: -20px;
+          margin-right: -20px;
+        }
+      
+        .carousel .item {
+          height: 300px;
+        }
+      
+        .carousel img {
+          height: 300px;
+        }
+      
+        .carousel-caption {
+          width: 65%;
+          padding: 0 70px;
+          margin-top: 100px;
+        }
+      
+        .carousel-caption h1 {
+          font-size: 30px;
+        }
+      
+        .carousel-caption .lead,
+        .carousel-caption .btn {
+          font-size: 18px;
+        }
+      
+        .marketing .span4 + .span4 {
+          margin-top: 40px;
+        }
+      
+        .featurette-heading {
+          font-size: 30px;
+	  'Ubuntu', Helvetica, Arial, sans-serif;
+        }
+      
+        .featurette .lead {
+          font-size: 18px;
+          line-height: 1.5;
+        }
+        
+      }
+      
+      @media (max-width: 767px) {
+        .linediv-l {
+          border-bottom: 1px solid;
+        }
+          
+        .linediv-r {
+          border-top: 1px solid;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .linediv-l {
+          border-right: 1px solid;
+        }
+          
+        .linediv-r {
+          border-left: 1px solid;
+        }
+      }
+
+       /* Video and pitch and action */
+          .pitch {
+              padding: 2.5% 0%;
+          }
+            
+          .order {
+              padding: 2% 0%;
+          }
+            
+          .actions {
+              background-color: #CCCCCC;
+              padding: 3% 0%;
+          }
+            
+      
+          .video, .thermometer, .order, .social, .statistics {
+              text-align: center;
+          } 
+          
+          .statistics h3, .statistics p {
+              color: #555555;
+          }
+          
+          .sponsor, .sponsor a {
+              margin-top: 9%;
+          }
+          /* FAQ */
+	  .accordion-heading a {
+	      color: #666666;
+	      font-size: 18px;
+	      text-decoration: underline;
+	  }
+
+          /* http://support.addthis.com/customer/portal/questions/1136093-share-buttons-in-center-position */
+          div.addthis_toolbox {
+              width: 240px;
+              margin: 0 auto;
+      }
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
+    </script>
+    <script src="js/bootstrap.js">
+    </script>
+    <script>
+
+    </script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', 'UA-42897946-1', 'herokuapp.com');
+      ga('send', 'pageview');
+
+    </script>
+
+  </body>
+</html>

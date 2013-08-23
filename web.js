@@ -115,8 +115,17 @@ app.get('/auth/google/callback', passport.authenticate('google', {
 
 // Main page
 app.get('/', function(request, response) {
-  var html = fs.readFileSync(htmlfile).toString();
-  response.send(html);
+  global.db.Order.findAll().success(function(orders) {
+    var total_backers = orders.length;
+    var total_bitcoins = 0;
+    orders.foreach(function(order) {
+	total_bitcoins += order.amount;
+    }); 
+  });
+  
+  //var html = fs.readFileSync(htmlfile).toString();
+  //response.send(html);
+  response.render("index", {backers: total_backers, bitcoins: total_bitcoins});
 });
 
 // Signup page

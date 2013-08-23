@@ -117,12 +117,14 @@ app.get('/auth/google/callback', passport.authenticate('google', {
 app.get('/', function(request, response) {
   global.db.Order.findAll().success(function(orders) {
     var total_backers = orders.length;
+    var backer_percent = (total_backers * 100) / 100;
+    if (backer_percent > 100) backer_percent = 100;
     var total_bitcoins = 0;
     orders.forEach(function(order) {
 	total_bitcoins += order.amount;
     }); 
     
-    response.render("index", {backers: total_backers, bitcoins: total_bitcoins});  
+    response.render("index", {backers: total_backers, percent: backer_percent, bitcoins: total_bitcoins});  
   }).error(function(err) {
       console.log(error);
       response.render("index", {backers: 1, bitcoins: 0.00001});  

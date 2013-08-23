@@ -121,8 +121,7 @@ app.get('/', function(request, response) {
 
 // Signup page
 app.get('/signup', function(request, response) {
-  var sgnup = fs.readFileSync(signupfile).toString();
-  response.send(sgnup);
+  response.sendfile(signupfile);  
 });
 
 // Signout page
@@ -133,20 +132,17 @@ app.get('/signout', function(request, response) {
 
 // User dashboard
 app.get('/dashboard', function(request, response) {
-  var dash = fs.readFileSync(dashboardfile).toString();
-  response.send(dash);
+  response.sendfile(dashboardfile);
 });
 
 // Privacy policy
 app.get('/privacy', function(request, response) {
-  var dash = fs.readFileSync(privacyfile).toString();
-  response.send(dash);
+  response.sendfile(privacyfile);
 });
 
 // Terms
 app.get('/terms', function(request, response) {
-  var dash = fs.readFileSync(termsfile).toString();
-  response.send(dash);
+  response.sendfile(termsfile);
 });
 
 //var port = process.env.PORT || 8080;

@@ -10,6 +10,9 @@ var async   = require('async')
   , TwitterStrategy = require('passport-twitter').Strategy
   , FacebookStrategy = require('passport-facebook').Strategy
   , GoogleStrategy = require('passport-google').Strategy
+  , LocalStrategy = require('passport-local').Strategy
+  , User = require('./model/user')
+    
 
 // Variable devclaration
 var htmlfile = "index.html";
@@ -41,11 +44,13 @@ var TWITTER_CONSUMER_SECRET = process.env.TWITTER_CONSUMER_SECRET;
 
 // Passport js sessions
 passport.serializeUser(function(user, done) {
-  done(null, user);
+    done(null, user.id);
 });
  
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
+passport.deserializeUser(function(id, done) {
+    User.findById(id, function(err, user) { 
+	done(err, user);
+    });
 });
 
 // Facebook login strategy
@@ -87,6 +92,23 @@ passport.use(new GoogleStrategy({
   }
 ));
 
+// Local login strategy
+passport.use(new LocalStrategy(
+    function(email, password, done) {
+	User.findOne({email: email}, function(err, user) {
+	    if (err) { return done(err); }
+	    // No User
+	    if (!user) {
+		return done(null, false, {message: "Incorrect email"});
+	    }
+	    // Match password
+	    user.comparePassword(password, function(err, isMatch) {
+		return done(null, false, { message: 'Incorrect password.' });
+	    });
+	    return done(null, user);
+	});
+    }
+));
 
 // Facebook login and callbacks
 app.get('/auth/facebook', passport.authenticate('facebook'));
@@ -160,6 +182,14 @@ app.get('/privacy', function(request, response) {
 app.get('/terms', function(request, response) {
   response.sendfile(termsfile);
 });
+
+
+// Post method
+app.post("/local-signin",
+	 passport.authenticate("local", { successRedirect: "/dashboard",
+					  failureRedirect: "/sigin",
+					  failureFlash: true })
+	);
 
 //var port = process.env.PORT || 8080;
 //app.listen(port, function() {

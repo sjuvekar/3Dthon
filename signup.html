@@ -35,141 +35,141 @@
   </head>
   <body>
     <div class="navbar-wrapper">
-    	<div class="container">
-    		<div class="navbar navbar-inverse">
-    			<div class="navbar-inner">
-    				<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-    					<span class="icon-bar"></span>
-    					<span class="icon-bar"></span>
-    					<span class="icon-bar"></span>
-    				</button>
-    				<a class="brand" href="/">3Dthon</a>
-    				<div class="nav-collapse collapse">
-    					<ul class="nav">
-    						<li>
-    							<a href="/">Home</a>
-    						</li>
-    						<li  class="active">
-    							<a href="/signup">Sign Up</a>
-    						</li>
-    						<li class="active">
-    							<a href="/signup">Sign In</a>
-    						</li>
-    						<li>
-    							<a href="/#collapseOne">FAQ</a>
-    						</li>
-    						<li>
-    							<a href="http://blog.3dthon.com" target="none">Blog</a>
-    						</li>
-    						<li class="dropdown">
-    							<a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
-    							<ul class="dropdown-menu">
-    								<li>
-    									<a href="/dashboard">Competitions</a>
-    								</li>
-    								<li>
-    									<a href="/dashboard">User Rankings</a>
-    								</li>
-    								<li>
-    									<a href="/dashboard">Forums</a>
-    								</li>
-    							</ul>
-    						</li>
-    					</ul>
-    				</div>
-    			</div>
-    		</div>
+      <div class="container">
+    	<div class="navbar navbar-inverse">
+    	  <div class="navbar-inner">
+    	    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+    	      <span class="icon-bar"></span>
+    	      <span class="icon-bar"></span>
+    	      <span class="icon-bar"></span>
+    	    </button>
+    	    <a class="brand" href="/">3Dthon</a>
+    	    <div class="nav-collapse collapse">
+    	      <ul class="nav">
+    		<li>
+    		  <a href="/">Home</a>
+    		</li>
+    		<li  class="active">
+    		  <a href="/signup">Sign Up</a>
+    		</li>
+    		<li class="active">
+    		  <a href="/signup">Sign In</a>
+    		</li>
+    		<li>
+    		  <a href="/#collapseOne">FAQ</a>
+    		</li>
+    		<li>
+    		  <a href="http://blog.3dthon.com" target="none">Blog</a>
+    		</li>
+    		<li class="dropdown">
+    		  <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
+    		  <ul class="dropdown-menu">
+    		    <li>
+    		      <a href="/dashboard">Competitions</a>
+    		    </li>
+    		    <li>
+    		      <a href="/dashboard">User Rankings</a>
+    		    </li>
+    		    <li>
+    		      <a href="/dashboard">Forums</a>
+    		    </li>
+    		  </ul>
+    		</li>
+    	      </ul>
+    	    </div>
+    	  </div>
     	</div>
+      </div>
     </div>
     <div class="container marketing">
-    	<hr class="featurette-divider">
-    	<div class="row-fluid">
-    		<div class="span6">
-    			<h1 class="offset1">
-    				Sign Up
-    			</h1>
-    			<form>
-    				<div class="control-group offset1">
-    					<label class="control-label">
-    						Email:
-    					</label>
-    					<div class="controls">
-    						<input type="email" id="signup-email">
-    						<div class="control-group">
-    							<label class="control-label">
-    								Password:
-    							</label>
-    							<div class="controls">
-    								<input type="password" id="signup-password1">
-    								<div class="control-group">
-    									<label class="control-label">
-    										Retype Password:
-    									</label>
-    									<div class="controls">
-    										<input type="password" id="signup-password2">
-										<div class="control-group">
-											<label class="control-label">
-		                                                                                Name:
-                                                                        		</label>
-		                                                                        <div class="controls">
-	                	                                                                <input type="text" id="signup-name">
-											</div>
-										</div>
+      <hr class="featurette-divider">
+      <div class="row-fluid">
+    	<div class="span6">
+    	  <h1 class="offset1">
+    	    Sign Up
+    	  </h1>
+    	  <form action="local-signup" method="post">
+    	    <div class="control-group offset1">
+    	      <label class="control-label">
+    		Email:
+    	      </label>
+    	      <div class="controls">
+    		<input type="email" name="signup-email" />
+    		<div class="control-group">
+    		  <label class="control-label">
+    		    Password:
+    		  </label>
+    		  <div class="controls">
+    		    <input type="password" name="signup-password1" />
+    		    <div class="control-group">
+    		      <label class="control-label">
+    			Retype Password:
+    		      </label>
+    		      <div class="controls">
+    			<input type="password" name="signup-password2" />
+			<div class="control-group">
+			  <label class="control-label">
+		            Name:
+                          </label>
+		          <div class="controls">
+	                    <input type="text" name="signup-name" />
+			  </div>
+			</div>
 
-    									</div>
-				
-    								</div>
-    							</div>
-    						</div>
-    					</div>
-    				</div>
-    				<button type="submit" class="btn btn-primary btn-large offset2" href="/dashboard">
-    					Sign Up
-    				</button>
-    			</form>
+    		      </div>
+		      
+    		    </div>
+    		  </div>
     		</div>
-    		<div class="span6">
-                <div class="linediv-r">
-    			    <h1 class="offset1">
-    				    Already a member?
-    			    </h1>
-    			    <p class="lead offset1">
-    				    Sign In!
-    			    </p>
-    			    <form>
-    				    <div class="control-group offset1">
-    					    <label class="control-label">
-    						    Email:
-    					    </label>
-    					    <div class="controls">
-    						    <input type="email" id="signin-email">
-    						    <div class="control-group">
-    							    <label class="control-label">
-    								    Password:
-    							    </label>
-    							    <div class="controls">
-    								    <input type="password" id="signin-password">
-    							    </div>
-    						    </div>
-    					    </div>
-    				    </div>
-                        <button type="submit" class="btn btn-primary btn-large offset2" href="/dashboard">
-        			        Sign In
-        			    </button>
-    	    		</form>
-    			</div>
-    		</div>
+    	      </div>
+    	    </div>
+    	    <button type="submit" class="btn btn-primary btn-large offset2">
+    	      Sign Up
+    	    </button>
+    	  </form>
     	</div>
+    	<div class="span6">
+          <div class="linediv-r">
+    	    <h1 class="offset1">
+    	      Already a member?
+    	    </h1>
+    	    <p class="lead offset1">
+    	      Sign In!
+    	    </p>
+    	    <form action="/local-signin" method="post">
+    	      <div class="control-group offset1">
+    		<label class="control-label">
+    		  Email:
+    		</label>
+    		<div class="controls">
+    		  <input type="email" name="signin-email" />
+    		  <div class="control-group">
+    		    <label class="control-label">
+    		      Password:
+    		    </label>
+    		    <div class="controls">
+    		      <input type="password" name="signin-password" />
+    		    </div>
+    		  </div>
+    		</div>
+    	      </div>
+              <button type="submit" class="btn btn-primary btn-large offset2">
+        	Sign In
+              </button>
+    	    </form>
+    	  </div>
+    	</div>
+      </div>
 
-        <hr class="featurette-divider">
+      <hr class="featurette-divider">
 
-    	<div class="container">
+      <div class="container">
 
-	  <h1 class="pagination-centered">
-	      Or sign-up/sign-in with your existing accounts
-	  </h1>
-	  
-	  <div class="row-fluid">
+	<h1 class="pagination-centered">
+	  Or sign-up/sign-in with your existing accounts
+	</h1>
+	
+	<div class="row-fluid">
 	  <div class="span4">
 	    <a href="/auth/facebook">
 	      <img src="https://dl.dropboxusercontent.com/u/69791784/3Dthon/assets/img/facebook-login.png">
@@ -185,21 +185,21 @@
 	      <img src="https://dl.dropboxusercontent.com/u/69791784/3Dthon/assets/img/google-login.png">
 	    </a>
 	  </div>
-	  </div>
 	</div>
+      </div>
 
-    	<hr class="featurette-divider">
-    	<footer>
-    		<p class="pull-right">
-    			<a href="# ">Back to top</a>
-    		</p>
-    		<p>
-    			© RamSud Labs, 2013 ·
-    			<a href="/privacy">Privacy</a>
-    			·
-    			<a href="/terms">Terms</a>
-    		</p>
-    	</footer>
+      <hr class="featurette-divider">
+      <footer>
+    	<p class="pull-right">
+    	  <a href="# ">Back to top</a>
+    	</p>
+    	<p>
+    	  © RamSud Labs, 2013 ·
+    	  <a href="/privacy">Privacy</a>
+    	  ·
+    	  <a href="/terms">Terms</a>
+    	</p>
+      </footer>
     </div>
 
     <style>

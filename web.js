@@ -110,7 +110,10 @@ passport.use(new GoogleStrategy({
 ));
 
 // Local login strategy
-passport.use(new LocalStrategy(
+passport.use(new LocalStrategy({
+      usernameField: "signin_email",
+      passwordField: "signin_password"
+    },
     function(email, password, done) {
 	User.findOne({email: email}, function(err, user) {
 	    if (err) { return done(err); }
@@ -120,7 +123,8 @@ passport.use(new LocalStrategy(
 	    }
 	    // Match password
 	    user.comparePassword(password, function(err, isMatch) {
-		return done(null, false, { message: 'Could not log in, incorrect password.' });
+		if (!isMatch)
+		    return done(null, false, { message: 'Could not log in, incorrect password.' });
 	    });
 	    return done(null, user);
 	});
@@ -211,9 +215,9 @@ app.post("/local_signin",
 	);
 
 
-app.post("/local_signup", function(request, response, done) {
+app.post("/local_signup", function(request, response) {
     User.findOne({email: request.body.signup_email}, function(err, result) {
-	if (!err) {
+	if (!err && result) {
 	    console.log("User " + request.body.signup_email + " already exists");  
 	    request.flash("signup_error", "Email already used for signing up. Try using different email id"); 
 	    response.redirect("/signup"); 
@@ -225,11 +229,12 @@ app.post("/local_signup", function(request, response, done) {
 	    new_user.save(function(err) { 
 		if(err) {
 		    console.log("Error saving user " + request.body.signup_email + err);
-		    return done(null, err)
+		    request.flash("signup_error", "There was some error signing you up. We are looking into it!");
+		    response.redirect("/signup");
 		}
 		else {
 		    console.log("Saved user " + request.body.signup_email + " to database"); 
-		    return done(null, new_user);
+		    response.redirect("/dashboard");
 		}
 	    });
 	}

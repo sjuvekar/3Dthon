@@ -46,13 +46,15 @@ var TWITTER_CONSUMER_SECRET = process.env.TWITTER_CONSUMER_SECRET;
 
 // Passport js sessions
 passport.serializeUser(function(user, done) {
-    done(null, user.id);
+    done(null, user);
+    //done(null, user.id);
 });
  
 passport.deserializeUser(function(id, done) {
-    User.findById(id, function(err, user) { 
-	done(err, user);
-    });
+    done(null, id);
+    //User.findById(id, function(err, user) { 
+//	done(err, user);
+    //});
 });
 
 // Facebook login strategy

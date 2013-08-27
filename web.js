@@ -194,7 +194,12 @@ app.get('/signout', function(request, response) {
 
 // User dashboard
 app.get('/dashboard', function(request, response) {
-  response.sendfile(dashboardfile);
+    if (!request.user) {
+	request.flash("error", "You must be logged in to proceed");
+	response.redirect("/signup");
+    }
+    else
+	response.render("dashboard", {username: request.user.name});
 });
 
 // Privacy policy

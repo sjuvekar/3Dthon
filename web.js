@@ -101,11 +101,11 @@ passport.use(new LocalStrategy(
 	    if (err) { return done(err); }
 	    // No User
 	    if (!user) {
-		return done(null, false, {message: "Incorrect email"});
+		return done(null, false, {message: "Email not found. Have you signed up?"});
 	    }
 	    // Match password
 	    user.comparePassword(password, function(err, isMatch) {
-		return done(null, false, { message: 'Incorrect password.' });
+		return done(null, false, { message: 'Could not log in, incorrect password.' });
 	    });
 	    return done(null, user);
 	});
@@ -161,7 +161,7 @@ app.get('/', function(request, response) {
 
 // Signup page
 app.get('/signup', function(request, response) {
-  response.sendfile(signupfile);  
+    response.render("signup", {flash_msg: request.flash("error")});
 });
 
 // Signout page
@@ -190,6 +190,7 @@ app.get('/terms', function(request, response) {
 app.post("/local-signin",
 	 passport.authenticate("local", { successRedirect: "/dashboard",
 					  failureRedirect: "/signup",
+					  badRequestMessage: "Could not log in. Have you signed up?", 
 					  failureFlash: true
 					})
 	);

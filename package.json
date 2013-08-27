@@ -9,10 +9,14 @@
     "ejs": "~0.8.4",
     "express": "~3.3.4",
     "async": "~0.2.9",
-    "passport": "0.1.16",
-    "passport-twitter":"0.1.5",
-    "passport-google":"0.3.0",
-    "passport-facebook":"0.1.5"
+    "passport": "~0.1.16",
+    "passport-twitter": "0.1.5",
+    "passport-google": "0.3.0",
+    "passport-facebook": "0.1.5",
+    "passport-local": "~0.1.5",
+    "connect-flash": "~0.1.1",  
+    "mongoose": "~3.6.3",
+    "bcrypt": "~0.7.6"
   },
   "engines": {
     "node": "0.10.12",

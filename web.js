@@ -10,6 +10,10 @@ var async   = require('async')
   , TwitterStrategy = require('passport-twitter').Strategy
   , FacebookStrategy = require('passport-facebook').Strategy
   , GoogleStrategy = require('passport-google').Strategy
+  , LocalStrategy = require('passport-local').Strategy
+  , flash = require('connect-flash')
+  , User = require('./models/user')
+
 
 // Variable devclaration
 var htmlfile = "index.html";
@@ -30,6 +34,7 @@ app.use(express.bodyParser());
 app.use(express.session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 // Facebook tokens
 var FACEBOOK_APP_ID = process.env.FACEBOOK_APP_ID;
@@ -41,11 +46,13 @@ var TWITTER_CONSUMER_SECRET = process.env.TWITTER_CONSUMER_SECRET;
 
 // Passport js sessions
 passport.serializeUser(function(user, done) {
-  done(null, user);
+    done(null, user.id);
 });
  
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
+passport.deserializeUser(function(id, done) {
+    User.findById(id, function(err, user) { 
+	done(err, user);
+    });
 });
 
 // Facebook login strategy
@@ -87,6 +94,23 @@ passport.use(new GoogleStrategy({
   }
 ));
 
+// Local login strategy
+passport.use(new LocalStrategy(
+    function(email, password, done) {
+	User.findOne({email: email}, function(err, user) {
+	    if (err) { return done(err); }
+	    // No User
+	    if (!user) {
+		return done(null, false, {message: "Email not found. Have you signed up?"});
+	    }
+	    // Match password
+	    user.comparePassword(password, function(err, isMatch) {
+		return done(null, false, { message: 'Could not log in, incorrect password.' });
+	    });
+	    return done(null, user);
+	});
+    }
+));
 
 // Facebook login and callbacks
 app.get('/auth/facebook', passport.authenticate('facebook'));
@@ -137,7 +161,7 @@ app.get('/', function(request, response) {
 
 // Signup page
 app.get('/signup', function(request, response) {
-  response.sendfile(signupfile);  
+    response.render("signup", {flash_msg: request.flash("error")});
 });
 
 // Signout page
@@ -160,6 +184,16 @@ app.get('/privacy', function(request, response) {
 app.get('/terms', function(request, response) {
   response.sendfile(termsfile);
 });
+
+
+// Post method
+app.post("/local-signin",
+	 passport.authenticate("local", { successRedirect: "/dashboard",
+					  failureRedirect: "/signup",
+					  badRequestMessage: "Could not log in. Have you signed up?", 
+					  failureFlash: true
+					})
+	);
 
 //var port = process.env.PORT || 8080;
 //app.listen(port, function() {

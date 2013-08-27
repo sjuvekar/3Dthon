@@ -119,14 +119,17 @@ passport.use(new LocalStrategy({
 	    if (err) { return done(err); }
 	    // No User
 	    if (!user) {
-		return done(null, false, {message: "Email not found. Have you signed up?"});
+		return done(null, false, {message: "Email id not found. Have you signed up?"});
 	    }
 	    // Match password
 	    user.comparePassword(password, function(err, isMatch) {
-		if (!isMatch)
+		if (!err && !isMatch) {
 		    return done(null, false, { message: 'Could not log in, incorrect password.' });
+		}
+		else {
+		    return done(null, user);
+		}
 	    });
-	    return done(null, user);
 	});
     }
 ));

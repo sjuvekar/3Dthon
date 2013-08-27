@@ -11,8 +11,9 @@ var async   = require('async')
   , FacebookStrategy = require('passport-facebook').Strategy
   , GoogleStrategy = require('passport-google').Strategy
   , LocalStrategy = require('passport-local').Strategy
+  , flash = require('connect-flash')
   , User = require('./models/user')
-    
+
 
 // Variable devclaration
 var htmlfile = "index.html";
@@ -33,6 +34,7 @@ app.use(express.bodyParser());
 app.use(express.session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 // Facebook tokens
 var FACEBOOK_APP_ID = process.env.FACEBOOK_APP_ID;
@@ -187,8 +189,9 @@ app.get('/terms', function(request, response) {
 // Post method
 app.post("/local-signin",
 	 passport.authenticate("local", { successRedirect: "/dashboard",
-					  failureRedirect: "/sigin",
-					  failureFlash: true })
+					  failureRedirect: "/signup",
+					  failureFlash: true
+					})
 	);
 
 //var port = process.env.PORT || 8080;

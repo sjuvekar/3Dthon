@@ -11,7 +11,7 @@ var async   = require('async')
   , FacebookStrategy = require('passport-facebook').Strategy
   , GoogleStrategy = require('passport-google').Strategy
   , LocalStrategy = require('passport-local').Strategy
-  , User = require('./model/user')
+  , User = require('./models/user')
     
 
 // Variable devclaration

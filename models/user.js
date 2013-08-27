@@ -1,6 +1,8 @@
-var mongoose = require("mongoose");
+var mongoose = require("mongoose")
+    , bcrypt = require("bcrypt")
+    , SALT_WORK_FACTOR = 10;
 
-var UserSchema = mongoose.schema({
+var UserSchema = mongoose.Schema({
     email: {
 	type: String,
 	required: true,
@@ -15,7 +17,7 @@ var UserSchema = mongoose.schema({
     }
 });
 
-UserSchema.pre(‘save’, { 
+UserSchema.pre('save', function(next) { 
     var user = this;
     // only hash the password if it has been modified (or is new)
     if (!user.isModified('password')) return next();
@@ -42,5 +44,5 @@ UserSchema.methods.comparePassword = function(candidatePassword, cb) {
     });
 };
 
-module.exports = mongoose.model(User&, UserSchema);
+module.exports = mongoose.model('User', UserSchema);
     

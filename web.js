@@ -13,7 +13,7 @@ var async   = require('async')
   , LocalStrategy = require('passport-local').Strategy
   , flash = require('connect-flash')
   , User = require('./models/user')
-
+  , mongoose = require('mongoose');
 
 // Variable devclaration
 var htmlfile = "index.html";
@@ -21,6 +21,19 @@ var signupfile = "signup.html";
 var dashboardfile = "dashboard.html";
 var privacyfile = "privacy.html";
 var termsfile = "terms.html";
+
+var uristring = 
+  process.env.MONGOLAB_URI || 
+  process.env.MONGOHQ_URL || 
+  "mongodb://heroku_app16939569:" + process.env.MONGODB_PASSWORD + "@ds041218.mongolab.com:41218/heroku_app16939569";
+
+mongoose.connect(uristring, function (err, res) {
+  if (err) { 
+    console.log ('ERROR connecting to: ' + uristring + '. ' + err);
+  } else {
+    console.log ('Succeeded connection to: ' + uristring);
+  }
+});
 
 var app = express();
 app.set('views', __dirname + '/views');
@@ -163,7 +176,7 @@ app.get('/', function(request, response) {
 
 // Signup page
 app.get('/signup', function(request, response) {
-    response.render("signup", {flash_msg: request.flash("error")});
+    response.render("signup", {signup_flash_msg: request.flash("signup_error"), flash_msg: request.flash("error")});
 });
 
 // Signout page
@@ -189,7 +202,7 @@ app.get('/terms', function(request, response) {
 
 
 // Post method
-app.post("/local-signin",
+app.post("/local_signin",
 	 passport.authenticate("local", { successRedirect: "/dashboard",
 					  failureRedirect: "/signup",
 					  badRequestMessage: "Could not log in. Have you signed up?", 
@@ -197,6 +210,32 @@ app.post("/local-signin",
 					})
 	);
 
+
+app.post("/local_signup", function(request, response, done) {
+    User.findOne({email: request.body.signup_email}, function(err, result) {
+	if (!err) {
+	    console.log("User " + request.body.signup_email + " already exists");  
+	    request.flash("signup_error", "Email already used for signing up. Try using different email id"); 
+	    response.redirect("/signup"); 
+	}
+	else {
+	    var new_user = new User({email: request.body.signup_email,
+				     password: request.body.signup_password1,
+				     name: request.body.signup_name});
+	    new_user.save(function(err) { 
+		if(err) {
+		    console.log("Error saving user " + request.body.signup_email + err);
+		    return done(null, err)
+		}
+		else {
+		    console.log("Saved user " + request.body.signup_email + " to database"); 
+		    return done(null, new_user);
+		}
+	    });
+	}
+    });
+});
+	 
 //var port = process.env.PORT || 8080;
 //app.listen(port, function() {
 //  console.log("Listening on " + port);

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic" rel="stylesheep" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800" rel="stylesheep" type="text/css">
+    <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fsocial-buttons.css">
+    
+    <style>
+      body { 
+	padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif; 
+      }
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js">
+      </script>
+    <![endif]-->
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+    <style>
+    </style>
+  </head>
+  <body>
+    <div class="navbar-wrapper">
+      <div class="container">
+	<div class="navbar navbar-inverse"> 
+    	  <div class="navbar-inner">
+    			<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+    				<span class="icon-bar"></span>
+    				<span class="icon-bar"></span>
+    				<span class="icon-bar"></span>
+    			</button>
+    			<a class="brand" href="/">3Dthon</a>
+    			<div class="nav-collapse collapse">
+    				<p class="navbar-text pull-right">
+    					Logged in as
+    					<a href="#" class="navbar-link"><%= username %></a>
+    				</p>
+    					<ul class="nav">
+    						<li>
+    							<a href="#">Home</a>
+    						</li>
+    						<li>
+    							<a href="http://blog.3dthon.com" target="none">Blog</a>
+    						</li>
+						<li class="active">
+    						  <a href="#">Competitions</a>
+    						</li>
+    						<li class="active">
+    						  <a href="#">User Rankings</a>
+    						</li>
+    						<li class="active">
+    						  <a href="#">Forums</a>
+    						</li>
+    						<li>
+						  <a href="/signout">Sign Out</a>
+						</li>
+    					</ul>
+    			</div>
+    			<!--/.nav-collapse -->
+	  </div>
+	</div>
+      </div>
+    </div>
+    
+    <div class="container">
+    	<div class="row">
+    		<div class="span3">
+    			<div class="well sidebar-nav">
+    				<ul class="nav nav-list">
+    					<li class="nav-header">
+    						dashboard
+    					</li>
+					<li>
+					  	<a href="#">Competitions</a>
+    					</li>
+    					<li>
+    						<a href="#">User Rankings</a>
+    					</li>
+    					<li>
+    						<a href="#">Forums</a>
+    					</li>
+    					<li>
+    						<a href="#">My Portfolio</a>
+    					</li>
+    					<li class="nav-header">
+    						My Account
+    					</li>
+    					<li>
+    						<a href="#">Settings</a>
+    					</li>
+    					<li>
+    						<a href="#">Profile</a>
+    					</li>
+    					<li class="nav-header">
+    						Want to host a competition?
+    					</li>
+    					<li>
+    						<a href="#">Host Now</a>
+    					</li>
+    				</ul>
+    			</div>
+    			<!--/.well -->
+    		</div>
+    		<!--/span-->
+    		<div class="span9 sidebar-nav">
+    			<p class="lead">
+    				<h1>
+    					Welcome, <%= username %></h1>
+    				<p>
+    					Find, host, compete in the competitions
+    				</p>
+    				<p>
+    				</p>
+    			</p>
+
+    		<!--/span-->
+		
+		<hr class="featurette-divider">
+		
+		  <h2 class="featurette-heading">
+		    Stay tuned!
+		    <span class="muted">We have some amazing products coming up.</span>  
+		    The links here show the general layout of the site 
+		  </h2>
+		  
+		</div>
+    	
+
+    	</div>
+    </div>
+
+    <div class="container">
+
+	<hr class="featurette-divider">
+
+	<div class="featurette">
+	  <h1 class="featurette-heading pagination-centered">
+	      Till then...Spread the word... Follow us!
+	  </h1>
+
+	  <div class="row-fluid">
+	    <div class="span4">
+	      <a href="http://facebook.com/3Dthon" target="none">
+		<img src="https://dl.dropboxusercontent.com/u/69791784/3Dthon/assets/img/facebook-icon.png" alt="facebook">
+	      </a>
+	    </div>
+	    <div class="span4">
+	      <a href="http://twitter.com/3Dthon" target="none">
+		<img src="https://dl.dropboxusercontent.com/u/69791784/3Dthon/assets/img/twitter-icon.png" alt="twitter">
+	      </a>
+	    </div>
+	    <div class="span4">
+	      <a href="https://plus.google.com/b/105110122203783219477/105110122203783219477" target="none">
+		<img src="https://dl.dropboxusercontent.com/u/69791784/3Dthon/assets/img/google-icon.png" alt="google">
+	      </a>
+	    </div>
+	    
+	  </div>
+	</div>
+
+
+	<hr class="featurette-divider">
+    
+    	<footer>
+    		<p>
+    			© RamSud Labs, 2013
+    		</p>
+    	</footer>
+    </div>
+    <!--/.fluid-container-->
+
+    <style>
+      
+      .sidebar-nav {
+        padding: 9px 0;
+        margin-top: 40px;
+      }
+      
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+
+            /* GLOBAL STYLES
+      -------------------------------------------------- */
+      /* Lighter body text */
+      
+      body {
+        color: #5a5a5a;
+      }
+      
+      
+      
+      /* CUSTOMIZE THE NAVBAR
+      -------------------------------------------------- */
+      
+      /* Special class on .container surrounding .navbar, used for positioning it into place. */
+      .navbar-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        margin-top: 20px;
+        margin-bottom: -90px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
+      }
+      
+      /* Remove border and change up box shadow for more contrast */
+      .navbar .navbar-inner {
+        border: 0;
+        -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.25);
+        -moz-box-shadow: 0 2px 10px rgba(0,0,0,.25);
+        box-shadow: 0 2px 10px rgba(0,0,0,.25);
+      }
+      
+      /* Downsize the brand/project name a bit */
+      .navbar .brand {
+        padding: 14px 20px 16px; /* Increase vertical padding to match navbar links */
+        font-size: 16px;
+        font-weight: bold;
+        text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+      }
+      
+      /* Navbar links: increase padding for taller navbar */
+      .navbar .nav > li > a {
+        padding: 15px 20px;
+      }
+      
+      /* Offset the responsive button for proper vertical alignment */
+      .navbar .btn-navbar {
+        margin-top: 10px;
+      }
+      
+     
+      
+      /* Featurettes
+      ------------------------- */
+      
+      .featurette-divider {
+        margin: 80px 0; /* Space out the Bootstrap <hr> more */
+      }
+      
+      .featurette {
+        padding-top: 120px; /* Vertically center images part 1: add padding above and below text. */
+        overflow: hidden; /* Vertically center images part 2: clear their floats. */
+      }
+      
+      .featurette-image {
+        margin-top: -120px; /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
+      }
+      
+      /* Give some space on the sides of the floated elements so text doesn't run right into it. */
+      .featurette-image.pull-left {
+        margin-right: 40px;
+      }
+      
+      .featurette-image.pull-right {
+        margin-left: 40px;
+      }
+      
+      /* Thin out the marketing headings */
+      .featurette-heading {
+        font-size: 50px;
+        font-weight: 300;
+        line-height: 1;
+        letter-spacing: -1px;
+	'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      
+      
+      
+      /* RESPONSIVE CSS
+      -------------------------------------------------- */
+      
+      @media (max-width: 980px) {
+      
+        .container.navbar-wrapper {
+          margin-bottom: 0;
+          width: auto;
+        }
+      
+        .navbar-inner {
+          border-radius: 0;
+          margin: -20px 0;
+        }
+      
+        .carousel .item {
+          height: 500px;
+        }
+      
+        .carousel img {
+          width: auto;
+          height: 500px;
+        }
+      
+        .featurette {
+          height: auto;
+          padding: 0;
+        }
+      
+        .featurette-image.pull-left,
+        .featurette-image.pull-right {
+          display: block;
+          float: none;
+          max-width: 40%;
+          margin: 0 auto 20px;
+        }
+              
+      }
+      
+      
+      @media (max-width: 767px) {
+
+        .navbar-inner {
+          margin: -20px;
+        }
+      
+        .carousel {
+          margin-left: -20px;
+          margin-right: -20px;
+        }
+      
+        .carousel .item {
+          height: 300px;
+        }
+      
+        .carousel img {
+          height: 300px;
+        }
+      
+        .carousel-caption {
+          width: 65%;
+          padding: 0 70px;
+          margin-top: 100px;
+        }
+      
+        .carousel-caption h1 {
+          font-size: 30px;
+        }
+      
+        .carousel-caption .lead,
+        .carousel-caption .btn {
+          font-size: 18px;
+        }
+      
+
+        .featurette-heading {
+          font-size: 30px;
+	  'Ubuntu', Helvetica, Arial, sans-serif;
+        }
+      
+        .featurette .lead {
+          font-size: 18px;
+          line-height: 1.5;
+        }
+        
+      }
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
+    </script>
+    <script src="js/bootstrap.js">
+    </script>
+    <script>
+
+    </script>
+  </body>
+</html>

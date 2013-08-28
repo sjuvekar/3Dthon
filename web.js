@@ -85,6 +85,41 @@ passport.createUser = function(emailaddress, password1, password2, username, don
     });
 };
 
+// Helper function to create Social user
+passport.createSocialUser = function(profile, strategy, done) {
+    var profile_id = null;
+    var profile_password = "*";
+    var profile_name = null;
+    
+    if (strategy === "twitter") {
+	profile_id = profile._json.id_str;
+	profile_name = profile._json.screen_name;
+    }
+    
+    User.findOne({email: profile_id}, function(err, result) {
+	if(!err && result) {
+	    console.log("User already exists. Returning it from database");
+	    return done(null, result);
+	}
+	else {
+	    console.log(profile);
+	    var new_user = new User({email: profile_id,
+				     password: profile_password,
+				     name: profile_name});
+	    new_user.save(function(err) {
+		if(err) {
+		    console.log("Error saving user " + profile_id + " to database");
+		    return done(err);
+		}
+		else {
+		    console.log("Saved user " + profile_name + " to database");
+		    return done(null, new_user);
+		}
+	    });
+	}
+    });
+}
+
 // Passport js sessions
 passport.serializeUser(function(user, done) {
     done(null, user);
@@ -118,10 +153,7 @@ passport.use(new TwitterStrategy({
     callbackURL: "/auth/twitter/callback"
   },
   function(token, tokenSecret, profile, done) {
-    // NOTE: You'll probably want to associate the Twitter profile with a
-    //       user record in your application's DB.
-    var user = profile;
-    return done(null, user);
+      return passport.createSocialUser(profile, "twitter", done);
   }
 ));
 
@@ -132,7 +164,7 @@ passport.use(new GoogleStrategy({
     realm: "http://www.3dthon.com/"
   },
   function(identifier, profile, done) {
-      var user = profile; 
+      var user = profile;
       return done(null, user);
   }
 ));

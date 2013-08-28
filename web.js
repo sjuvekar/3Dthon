@@ -57,6 +57,34 @@ var FACEBOOK_APP_SECRET = process.env.FACEBOOK_APP_SECRET;
 var TWITTER_CONSUMER_KEY = process.env.TWITTER_CONSUMER_KEY;
 var TWITTER_CONSUMER_SECRET = process.env.TWITTER_CONSUMER_SECRET;
 
+// Helper function to create a new user
+passport.createUser = function(emailaddress, password1, password2, username, done) {
+    if (password1 !== password2) 
+	return done({message: "Passwords must match. Try signing up again!"});
+    User.findOne({email: emailaddress}, function(err, result) {
+	if (!err && result) {
+	    console.log("User " + emailaddress + " already exists");  
+	    return done({message: "Email id already exists. Try signing in using the id"});
+	}
+	else {
+	    var new_user = new User({email: emailaddress,
+				     password: password1,
+				     name: username});
+	    new_user.save(function(err) { 
+		if(err) {
+		    console.log("Error saving user " + emailaddress + "  " + err);
+		    return done(err);
+		}
+		else {
+		    console.log("Saved user " + emailaddress + " to database"); 
+		    return done(null, new_user);
+		}
+	    });
+
+	}
+    });
+};
+
 // Passport js sessions
 passport.serializeUser(function(user, done) {
     done(null, user);
@@ -224,29 +252,24 @@ app.post("/local_signin",
 
 
 app.post("/local_signup", function(request, response) {
-    User.findOne({email: request.body.signup_email}, function(err, result) {
-	if (!err && result) {
-	    console.log("User " + request.body.signup_email + " already exists");  
-	    request.flash("signup_error", "Email already used for signing up. Try using different email id"); 
-	    response.redirect("/signup"); 
-	}
-	else {
-	    var new_user = new User({email: request.body.signup_email,
-				     password: request.body.signup_password1,
-				     name: request.body.signup_name});
-	    new_user.save(function(err) { 
-		if(err) {
-		    console.log("Error saving user " + request.body.signup_email + err);
-		    request.flash("signup_error", "There was some error signing you up. We are looking into it!");
-		    response.redirect("/signup");
-		}
-		else {
-		    console.log("Saved user " + request.body.signup_email + " to database"); 
-		    response.redirect("/dashboard");
-		}
-	    });
-	}
-    });
+    var body = request.body;
+    passport.createUser(body.signup_email, 
+			body.signup_password1, 
+			body.signup_password2, 
+			body.signup_name,
+			function(err, user) {
+			    if (err) 
+				response.render("signup", {signup_flash_msg: err.message, flash_msg: request.flash("error")});
+			    else {
+				request.login(user, function(err) {
+				    if (err) 
+					response.render("signup", {signup_flash_msg: err.message, flash_msg: request.flash("error")});
+				    else
+					response.redirect("/dashboard");
+				});
+			    }
+			});
+
 });
 	 
 //var port = process.env.PORT || 8080;

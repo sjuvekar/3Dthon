@@ -59,11 +59,12 @@ var TWITTER_CONSUMER_SECRET = process.env.TWITTER_CONSUMER_SECRET;
 
 // Helper function to create a new user
 passport.createUser = function(emailaddress, password1, password2, username, done) {
-    if (password1 !== password2) return done(new Error("Passwords must match"));
+    if (password1 !== password2) 
+	return done({message: "Passwords must match. Try signing up again!"});
     User.findOne({email: emailaddress}, function(err, result) {
 	if (!err && result) {
-	    console.log("User " + request.body.signup_email + " already exists");  
-	    return done(null, false, {message: "Email id already exists. Try signing in using the id"});
+	    console.log("User " + emailaddress + " already exists");  
+	    return done({message: "Email id already exists. Try signing in using the id"});
 	}
 	else {
 	    var new_user = new User({email: emailaddress,
@@ -258,9 +259,15 @@ app.post("/local_signup", function(request, response) {
 			body.signup_name,
 			function(err, user) {
 			    if (err) 
-				response.render("signup", {signup_flash_msg: err.message});
-			    else
-				response.redirect("/dashboard");
+				response.render("signup", {signup_flash_msg: err.message, flash_msg: request.flash("error")});
+			    else {
+				request.login(user, function(err) {
+				    if (err) 
+					response.render("signup", {signup_flash_msg: err.message, flash_msg: request.flash("error")});
+				    else
+					response.redirect("/dashboard");
+				});
+			    }
 			});
 
 });

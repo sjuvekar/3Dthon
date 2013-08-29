@@ -95,6 +95,9 @@ passport.createSocialUser = function(profile, strategy, done) {
     var profile_id = profile.id;
     var profile_password = "*";
     var profile_name = profile.displayName;
+    var imageurl = null;
+    if (profile.photos && profile.photos[0])
+	imageurl = profile.photos[0].value;
     console.log(profile);
 
     User.findOne({email: profile_id}, function(err, result) {
@@ -105,7 +108,8 @@ passport.createSocialUser = function(profile, strategy, done) {
 	else {
 	    var new_user = new User({email: profile_id,
 				     password: profile_password,
-				     name: profile_name});
+				     name: profile_name,
+				     imageurl: imageurl });
 	    new_user.save(function(err) {
 		if(err) {
 		    console.log("Error saving user " + profile_id + " to database");
@@ -258,8 +262,12 @@ app.get('/dashboard', function(request, response) {
 	request.flash("error", "You must be logged in to proceed");
 	response.redirect("/signup");
     }
-    else
-	response.render("dashboard", {username: request.user.name});
+    else {
+	var imageurl = request.user.imageurl;
+	if (!imageurl)
+	    imageurl = "https://dl.dropboxusercontent.com/u/69791784/3Dthon/assets/img/user-icon.png";
+	response.render("dashboard", {username: request.user.name, imageurl: imageurl});
+    }
 });
 
 // Privacy policy

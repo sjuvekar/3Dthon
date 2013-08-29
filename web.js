@@ -141,6 +141,7 @@ passport.deserializeUser(function(id, done) {
 passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET,
+    profileFields: ['id', 'displayName', 'photos'],
     callbackURL: "http://www.3dthon.com/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {

@@ -14,6 +14,9 @@ var UserSchema = mongoose.Schema({
     name: {
 	type: String,
 	required: true
+    },
+    imageurl: {
+	type: String
     }
 });
 

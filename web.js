@@ -16,9 +16,6 @@ var async   = require('async')
   , mongoose = require('mongoose');
 
 // Variable devclaration
-var htmlfile = "index.html";
-var signupfile = "signup.html";
-var dashboardfile = "dashboard.html";
 var privacyfile = "privacy.html";
 var termsfile = "terms.html";
 
@@ -221,8 +218,6 @@ app.get('/auth/google/callback', passport.authenticate('google', {
     failureRedirect: '/signup' 
 }));
 
-//var app = express.createServer(express.logger());
-
 
 // Main page
 app.get('/', function(request, response) {
@@ -240,9 +235,6 @@ app.get('/', function(request, response) {
       console.log(error);
       response.render("index", {backers: 1, bitcoins: 0.00001});  
   });
-  
-  //var html = fs.readFileSync(htmlfile).toString();
-  //response.send(html);
   
 });
 
@@ -313,10 +305,6 @@ app.post("/local_signup", function(request, response) {
 
 });
 	 
-//var port = process.env.PORT || 8080;
-//app.listen(port, function() {
-//  console.log("Listening on " + port);
-//});
 
 // Code from bitstarter-ssjs-db. Adding orders to Database
 // Render example.com/orders

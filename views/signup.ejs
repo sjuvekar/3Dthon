@@ -84,85 +84,104 @@
     <div class="container marketing">
       <hr class="featurette-divider">
       <div class="row-fluid">
-    	<div class="span6">
-    	  <h1 class="offset1">
+    	<div class="span6 pagination-centered">
+    	  <h1>
     	    Sign Up
     	  </h1>
-    	  <form action="local_signup" method="post">
-    	    <div class="control-group offset1">
-    	      <label class="control-label">
+    	  <form  action="local_signup" method="post">
+    	    
+	    <div class="control-group">
+    	      <label class="control-label" for="signup-email">
     		Email:
     	      </label>
     	      <div class="controls">
-    		<input type="email" name="signup_email" />
-    		<div class="control-group">
-    		  <label class="control-label">
-    		    Password:
-    		  </label>
-    		  <div class="controls">
-    		    <input type="password" name="signup_password1" />
-    		    <div class="control-group">
-    		      <label class="control-label">
-    			Retype Password:
-    		      </label>
-    		      <div class="controls">
-    			<input type="password" name="signup_password2" />
-			<div class="control-group">
-			  <label class="control-label">
-		            Name:
-                          </label>
-		          <div class="controls">
-	                    <input type="text" name="signup_name" />
-			  </div>
-			</div>
+    		<input type="email" id="signup-email" name="signup_email">
+	      </div>
+	    </div>
+    	    
+	    <div class="control-group">
+    	      <label class="control-label" for="signup-password1">
+    		Password:
+    	      </label>
+    	      <div class="controls">
+    		<input type="password" id="signup-password1" name="signup_password1">
+	      </div>
+	    </div>
+    	    
+	    <div class="control-group">
+    	      <label class="control-label" for="signup-password2">
+    		Retype Password:
+    	      </label>
+    	      <div class="controls">
+    		<input type="password" id="signup-password2" name="signup_password2">
+	      </div>
+	    </div>
+	    
+	    <div class="control-group">
+	      <label class="control-label" for="signup-name">
+		Name:
+              </label>
+	      <div class="controls">
+	        <input type="text" id="signup-name" name="signup_name">
+	      </div>
+	    </div>
 
-    		      </div>
-		      
-    		    </div>
-    		  </div>
-    		</div>
-    	      </div>
-    	    </div>
-    	    <button type="submit" class="btn btn-primary btn-large offset2">
-    	      Sign Up
-    	    </button>
+	    <div class="control-group">
+	      <div class="controls">
+    		<button type="submit" class="btn btn-primary btn-large">
+    		  Sign Up
+    		</button>
+	      </div>
+	    </div>
+
     	  </form>
-	  <div>
-	      <p style="color: #DD0000"><%= signup_flash_msg %></p>
+
+	  <div class="pagination-centered">
+	      <p class="signup-flash"><%= signup_flash_msg %></p>
     	  </div>
     	</div>
-    	<div class="span6">
+
+    	<div class="span6 pagination-centered">
           <div class="linediv-r">
-    	    <h1 class="offset1">
+    	    <h1>
     	      Already a member?
     	    </h1>
-    	    <p class="lead offset1">
+    	    <p class="lead">
     	      Sign In!
     	    </p>
+	    
     	    <form action="/local_signin" method="post">
-    	      <div class="control-group offset1">
-    		<label class="control-label">
+    	      
+	      <div class="control-group">
+    		<label class="control-label" for="signin-email">
     		  Email:
     		</label>
     		<div class="controls">
-    		  <input type="email" name="signin_email" />
-    		  <div class="control-group">
-    		    <label class="control-label">
-    		      Password:
-    		    </label>
-    		    <div class="controls">
-    		      <input type="password" name="signin_password" />
-    		    </div>
-    		  </div>
+    		  <input type="email" id="signin-email" name="signin_email">
+		</div>
+	      </div>
+	      
+    	      <div class="control-group">
+    		<label class="control-label" for="signin-password">
+    		  Password:
+    		</label>
+    		<div class="controls">
+    		  <input type="password" id="signin-password" name="signin_password">
     		</div>
     	      </div>
-              <button type="submit" class="btn btn-primary btn-large offset2">
-        	Sign In
-              </button>
+
+	      <div class="control-group">
+		<div class="controls">
+		  <button type="submit" class="btn btn-primary btn-large">
+        	    Sign In
+		  </button>
+		</div>
+	      </div>
+	      
     	    </form>
 	  </div>
-	  <div class="offset1">
-	      <p style="color: #DD0000"><%= flash_msg %></p>
+	  <div class="pagination-centered">
+	      <p class="signup-flash"><%= flash_msg %></p>
     	  </div>
     	</div>
       </div>
@@ -197,7 +216,7 @@
       <hr class="featurette-divider">
       <footer>
     	<p class="pull-right">
-    	  <a href="# ">Back to top</a>
+    	  <a href="/">Back to top</a>
     	</p>
     	<p>
     	  © RamSud Labs, 2013 ·
@@ -498,6 +517,12 @@
               color: #555555;
           }
           
+          /* Special signup flash message */
+          .signup-flash {
+              color: #EE0000;
+              font-size: 20px;
+          }
+    
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
     </script>

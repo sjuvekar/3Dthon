@@ -9,7 +9,7 @@ var async   = require('async')
   , passport = require('passport')
   , TwitterStrategy = require('passport-twitter').Strategy
   , FacebookStrategy = require('passport-facebook').Strategy
-  , GoogleStrategy = require('passport-google').Strategy
+  , GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
   , LocalStrategy = require('passport-local').Strategy
   , flash = require('connect-flash')
   , User = require('./models/user')
@@ -56,6 +56,11 @@ var FACEBOOK_APP_SECRET = process.env.FACEBOOK_APP_SECRET;
 // Twitter tokens
 var TWITTER_CONSUMER_KEY = process.env.TWITTER_CONSUMER_KEY;
 var TWITTER_CONSUMER_SECRET = process.env.TWITTER_CONSUMER_SECRET;
+
+// Google Tokens
+var GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+var GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
+
 
 // Helper function to create a new user
 passport.createUser = function(emailaddress, password1, password2, username, done) {
@@ -154,10 +159,12 @@ passport.use(new TwitterStrategy({
 
 // Google login strategy
 passport.use(new GoogleStrategy({
-    returnURL: "http://www.3dthon.com/auth/google/callback",
-    realm: "http://www.3dthon.com/"
+    clientID: GOOGLE_CLIENT_ID,
+    clientSecret: GOOGLE_CLIENT_SECRET,
+    callbackURL: "http://www.3dthon.com/auth/google/callback",
+    scope: 'https://www.google.com/m8/feeds https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile'
   },
-  function(identifier, profile, done) {
+  function(accessToken, refreshToken, profile, done) {
       return passport.createSocialUser(profile, "google", done);
   }
 ));

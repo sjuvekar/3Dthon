@@ -93,8 +93,11 @@ passport.createSocialUser = function(profile, strategy, done) {
     var profile_password = "*";
     var profile_name = profile.displayName;
     var imageurl = null;
-    if (profile.photos && profile.photos[0])
+    if (strategy == "google" && profile._json)
+	imageurl = profile._json.picture;
+    else if (profile.photos && profile.photos[0])
 	imageurl = profile.photos[0].value;
+    
     console.log(profile);
 
     User.findOne({email: profile_id}, function(err, result) {

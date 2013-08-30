@@ -1,0 +1,29 @@
+var mongoose = require("mongoose");
+
+var ContestSchema = mongoose.Schema({
+    title: {
+	type: String,
+	required: true
+    },
+    description: {
+	type: String,
+	required: true
+    },
+    createdBy: {
+	type: Schema.Types.ObjectId,
+	required: true
+    },
+    createdAt: {
+	type: Date,
+	default: Date.now
+    },
+    endTime: {
+	type: Date,
+	required: true
+    },
+    images: {
+	type: [String]
+    }
+});
+
+module.exports = mongoose.model('Contest', ContestSchema);

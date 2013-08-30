@@ -126,6 +126,16 @@ app.get("/profile", function(request, response) {
     }
 });
 
+app.get("/competitions", function(request, response) {
+    if (!request.user) {
+	request.flash("error", "You must be logged in to proceed");
+	response.redirect("/signup");
+    }
+    else {
+	response.render("competitions", {user: request.user});
+    }
+});
+
 
 // Privacy policy
 app.get('/privacy', function(request, response) {

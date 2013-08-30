@@ -2,15 +2,14 @@
 // Writes Coinbase orders to database.
 var async   = require('async')
   , express = require('express')
-  , fs      = require('fs')
   , http    = require('http')
   , https   = require('https')
   , db      = require('./models')
+  , facebookAuth = require("./auth/facebook")
+  , twitterAuth = require("./auth/twitter")
+  , googleAuth = require("./auth/google")
+  , localAuth = require("./auth/local")
   , passport = require('passport')
-  , TwitterStrategy = require('passport-twitter').Strategy
-  , FacebookStrategy = require('passport-facebook').Strategy
-  , GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
-  , LocalStrategy = require('passport-local').Strategy
   , flash = require('connect-flash')
   , User = require('./models/user')
   , mongoose = require('mongoose');
@@ -46,83 +45,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-// Facebook tokens
-var FACEBOOK_APP_ID = process.env.FACEBOOK_APP_ID;
-var FACEBOOK_APP_SECRET = process.env.FACEBOOK_APP_SECRET;
- 
-// Twitter tokens
-var TWITTER_CONSUMER_KEY = process.env.TWITTER_CONSUMER_KEY;
-var TWITTER_CONSUMER_SECRET = process.env.TWITTER_CONSUMER_SECRET;
-
-// Google Tokens
-var GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
-var GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
-
-
-// Helper function to create a new user
-passport.createUser = function(emailaddress, password1, password2, username, done) {
-    if (password1 !== password2) 
-	return done({message: "Passwords must match. Try signing up again!"});
-    User.findOne({email: emailaddress}, function(err, result) {
-	if (!err && result) {
-	    console.log("User " + emailaddress + " already exists");  
-	    return done({message: "Email id already exists. Try signing in using the id"});
-	}
-	else {
-	    var new_user = new User({email: emailaddress,
-				     password: password1,
-				     name: username});
-	    new_user.save(function(err) { 
-		if(err) {
-		    console.log("Error saving user " + emailaddress + "  " + err);
-		    return done(err);
-		}
-		else {
-		    console.log("Saved user " + emailaddress + " to database"); 
-		    return done(null, new_user);
-		}
-	    });
-
-	}
-    });
-};
-
-// Helper function to create Social user
-passport.createSocialUser = function(profile, strategy, done) {
-    var profile_id = profile.id;
-    var profile_password = "*";
-    var profile_name = profile.displayName;
-    var imageurl = null;
-    if (strategy == "google" && profile._json)
-	imageurl = profile._json.picture;
-    else if (profile.photos && profile.photos[0])
-	imageurl = profile.photos[0].value;
-    
-    console.log(profile);
-
-    User.findOne({email: profile_id}, function(err, result) {
-	if(!err && result) {
-	    console.log("User already exists. Returning it from database");
-	    return done(null, result);
-	}
-	else {
-	    var new_user = new User({email: profile_id,
-				     password: profile_password,
-				     name: profile_name,
-				     imageurl: imageurl });
-	    new_user.save(function(err) {
-		if(err) {
-		    console.log("Error saving user " + profile_id + " to database");
-		    return done(err);
-		}
-		else {
-		    console.log("Saved user " + profile_name + " to database");
-		    return done(null, new_user);
-		}
-	    });
-	}
-    });
-}
 
 // Passport js sessions
 passport.serializeUser(function(user, done) {
@@ -137,89 +59,20 @@ passport.deserializeUser(function(id, done) {
     //});
 });
 
-// Facebook login strategy
-passport.use(new FacebookStrategy({
-    clientID: FACEBOOK_APP_ID,
-    clientSecret: FACEBOOK_APP_SECRET,
-    profileFields: ['id', 'displayName', 'photos'],
-    callbackURL: "http://www.3dthon.com/auth/facebook/callback"
-  },
-  function(accessToken, refreshToken, profile, done) {
-      return passport.createSocialUser(profile, "facebook", done);
-  }
-));
-
-
-// Twitter login Strategy
-passport.use(new TwitterStrategy({
-    consumerKey: TWITTER_CONSUMER_KEY,
-    consumerSecret: TWITTER_CONSUMER_SECRET,
-    callbackURL: "/auth/twitter/callback"
-  },
-  function(token, tokenSecret, profile, done) {
-      return passport.createSocialUser(profile, "twitter", done);
-  }
-));
-
-
-// Google login strategy
-passport.use(new GoogleStrategy({
-    clientID: GOOGLE_CLIENT_ID,
-    clientSecret: GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://www.3dthon.com/auth/google/callback",
-    scope: 'https://www.google.com/m8/feeds https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile'
-  },
-  function(accessToken, refreshToken, profile, done) {
-      return passport.createSocialUser(profile, "google", done);
-  }
-));
-
-// Local login strategy
-passport.use(new LocalStrategy({
-      usernameField: "signin_email",
-      passwordField: "signin_password"
-    },
-    function(email, password, done) {
-	User.findOne({email: email}, function(err, user) {
-	    if (err) { return done(err); }
-	    // No User
-	    if (!user) {
-		return done(null, false, {message: "Email id not found. Have you signed up?"});
-	    }
-	    // Match password
-	    user.comparePassword(password, function(err, isMatch) {
-		if (!err && !isMatch) {
-		    return done(null, false, { message: 'Could not log in, incorrect password.' });
-		}
-		else {
-		    return done(null, user);
-		}
-	    });
-	});
-    }
-));
 
 // Facebook login and callbacks
-app.get('/auth/facebook', passport.authenticate('facebook'));
-app.get('/auth/facebook/callback', passport.authenticate('facebook', { 
-    successReturnToOrRedirect: '/dashboard', 
-    failureRedirect: '/signup' 
-}));
+app.get('/auth/facebook', facebookAuth.facebookAuth());
+app.get('/auth/facebook/callback', facebookAuth.facebookAuthWithCallback());
 
 
 // Twitter login and callbacks
-app.get('/auth/twitter', passport.authenticate('twitter'));
-app.get('/auth/twitter/callback', passport.authenticate('twitter', { 
-    successReturnToOrRedirect: '/dashboard', 
-    failureRedirect: '/signup' 
-}));
+app.get('/auth/twitter', twitterAuth.twitterAuth());
+app.get('/auth/twitter/callback', twitterAuth.twitterAuthWithCallback());
+
 
 // Google login and callbacks
-app.get('/auth/google', passport.authenticate('google'));
-app.get('/auth/google/callback', passport.authenticate('google', { 
-    successReturnToOrRedirect: '/dashboard', 
-    failureRedirect: '/signup' 
-}));
+app.get('/auth/google', googleAuth.googleAuth());
+app.get('/auth/google/callback', googleAuth.googleAuthWithCallback());
 
 
 // Main page
@@ -278,35 +131,9 @@ app.get('/terms', function(request, response) {
 
 
 // Post method
-app.post("/local_signin",
-	 passport.authenticate("local", { successRedirect: "/dashboard",
-					  failureRedirect: "/signup",
-					  badRequestMessage: "Could not log in. Have you signed up?", 
-					  failureFlash: true
-					})
-	);
+app.post("/local_signin", localAuth.local_signin());
+app.post("/local_signup", function(request, response) { localAuth.local_signup(request, response); });
 
-
-app.post("/local_signup", function(request, response) {
-    var body = request.body;
-    passport.createUser(body.signup_email, 
-			body.signup_password1, 
-			body.signup_password2, 
-			body.signup_name,
-			function(err, user) {
-			    if (err) 
-				response.render("signup", {signup_flash_msg: err.message, flash_msg: request.flash("error")});
-			    else {
-				request.login(user, function(err) {
-				    if (err) 
-					response.render("signup", {signup_flash_msg: err.message, flash_msg: request.flash("error")});
-				    else
-					response.redirect("/dashboard");
-				});
-			    }
-			});
-
-});
 	 
 
 // Code from bitstarter-ssjs-db. Adding orders to Database

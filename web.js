@@ -14,9 +14,6 @@ var async   = require('async')
   , User = require('./models/user')
   , mongoose = require('mongoose');
 
-// Variable devclaration
-var privacyfile = "privacy.html";
-var termsfile = "terms.html";
 
 var uristring = 
   process.env.MONGOLAB_URI || 
@@ -119,14 +116,25 @@ app.get('/dashboard', function(request, response) {
     }
 });
 
+app.get("/profile", function(request, response) {
+    if (!request.user) {
+	request.flash("error", "You must be logged in to proceed");
+	response.redirect("/signup");
+    }
+    else {
+	response.render("profile", {user: request.user});
+    }
+});
+
+
 // Privacy policy
 app.get('/privacy', function(request, response) {
-  response.sendfile(privacyfile);
+  response.render("privacy");
 });
 
 // Terms
 app.get('/terms', function(request, response) {
-  response.sendfile(termsfile);
+  response.render("terms");
 });
 
 

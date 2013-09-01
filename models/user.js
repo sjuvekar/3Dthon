@@ -19,13 +19,13 @@ var UserSchema = mongoose.Schema({
 	type: String
     },
     hosted: {
-	[Schema.Types.ObjectId]
+	type: [mongoose.Schema.Types.ObjectId]
     },
     competed: {
-	[Schema.Types.ObjectId]
+	type: [mongoose.Schema.Types.ObjectId]
     },
     badges: {
-	[String]
+	type: [String]
     }
 });
 

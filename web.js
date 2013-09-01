@@ -5,7 +5,7 @@ var async   = require('async')
   , http    = require('http')
   , https   = require('https')
   , db      = require('./models')
-  , route   = require('/route')
+  , route   = require('./route')
   , facebookAuth = require("./auth/facebook")
   , twitterAuth = require("./auth/twitter")
   , googleAuth = require("./auth/google")
@@ -76,8 +76,8 @@ app.get('/', function(request, response) {
 });
 
 // Signup and Signout
-app.get('/signup', route.signup());
-app.get('/signout', route.signout());
+app.get('/signup', function(request, response) { route.signup(request, response); });
+app.get('/signout', function(request, response) { route.signout(request, response); });
 
 // User dashboard, profile and competitions
 app.get('/dashboard', function(request, response) { route.render("dashboard", request, response); });

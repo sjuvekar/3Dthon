@@ -1,4 +1,5 @@
 // Basic routes
+var flash = require('connect-flash');
 
 // Basic user checking and responding otherwise
 var login_flash_msg = "You must be logged in to proceed";

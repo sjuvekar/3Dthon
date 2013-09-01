@@ -17,6 +17,15 @@ var UserSchema = mongoose.Schema({
     },
     imageurl: {
 	type: String
+    },
+    hosted: {
+	type: [mongoose.Schema.Types.ObjectId]
+    },
+    competed: {
+	type: [mongoose.Schema.Types.ObjectId]
+    },
+    badges: {
+	type: [String]
     }
 });
 

@@ -5,38 +5,22 @@ var async   = require('async')
   , http    = require('http')
   , https   = require('https')
   , db      = require('./models')
+  , route   = require('./route')
   , facebookAuth = require("./auth/facebook")
   , twitterAuth = require("./auth/twitter")
   , googleAuth = require("./auth/google")
   , localAuth = require("./auth/local")
   , passport = require('passport')
   , flash = require('connect-flash')
-  , User = require('./models/user')
-  , mongoose = require('mongoose');
+  , mongooseDB = require('./models/mongooseDB');
 
-// Variable devclaration
-var privacyfile = "privacy.html";
-var termsfile = "terms.html";
-
-var uristring = 
-  process.env.MONGOLAB_URI || 
-  process.env.MONGOHQ_URL || 
-  "mongodb://heroku_app16939569:" + process.env.MONGODB_PASSWORD + "@ds041218.mongolab.com:41218/heroku_app16939569";
-
-mongoose.connect(uristring, function (err, res) {
-  if (err) { 
-    console.log ('ERROR connecting to: ' + uristring + '. ' + err);
-  } else {
-    console.log ('Succeeded connection to: ' + uristring);
-  }
-});
 
 var app = express();
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.set('port', process.env.PORT || 8080);
 
-// Passport js configuration
+// App configuration
 app.use(express.static(__dirname + "/assets"));
 app.use(express.cookieParser());
 app.use(express.bodyParser());
@@ -45,6 +29,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
+// Initialize mongoose DB
+mongooseDB.mongooseInit();
 
 // Passport js sessions
 passport.serializeUser(function(user, done) {
@@ -60,6 +46,40 @@ passport.deserializeUser(function(id, done) {
 });
 
 
+// Main page
+app.get('/', function(request, response) {
+  global.db.Order.findAll().success(function(orders) {
+    var total_backers = orders.length;
+    var backer_percent = total_backers;
+    if (backer_percent > 100) backer_percent = 100;
+    var total_bitcoins = 0;
+    orders.forEach(function(order) {
+	total_bitcoins += order.amount;
+    });
+    response.render("index", {backers: total_backers, percent: backer_percent, bitcoins: total_bitcoins.toFixed(5)});  
+  }).error(function(err) {
+      console.log(error);
+      response.render("index", {backers: 1, bitcoins: 0.00001});  
+  });
+});
+
+// Signup and Signout
+app.get('/signup', function(request, response) { route.signup(request, response); });
+app.get('/signout', function(request, response) { route.signout(request, response); });
+
+// User dashboard, profile and competitions
+app.get('/dashboard', function(request, response) { route.render("dashboard", request, response); });
+app.get("/profile", function(request, response) { route.render("profile", request, response); });
+app.get("/competitions", function(request, response) { route.render("competitions", request, response); });
+app.get("/rankings", function(request, response) { route.render("rankings", request, response); });
+app.get("/forums", function(request, response) { route.render("forums", request, response); });
+app.get("/newContest", function(request, response) { route.render("newContest", request, response); });
+
+// Privacy and Terms, Static pages
+app.get('/privacy', function(request, response) { response.render("privacy"); });
+app.get('/terms', function(request, response) { response.render("terms"); });
+
+
 // Facebook login and callbacks
 app.get('/auth/facebook', facebookAuth.facebookAuth());
 app.get('/auth/facebook/callback', facebookAuth.facebookAuthWithCallback());
@@ -73,61 +93,6 @@ app.get('/auth/twitter/callback', twitterAuth.twitterAuthWithCallback());
 // Google login and callbacks
 app.get('/auth/google', googleAuth.googleAuth());
 app.get('/auth/google/callback', googleAuth.googleAuthWithCallback());
-
-
-// Main page
-app.get('/', function(request, response) {
-  global.db.Order.findAll().success(function(orders) {
-    var total_backers = orders.length;
-    var backer_percent = total_backers;
-    if (backer_percent > 100) backer_percent = 100;
-    var total_bitcoins = 0;
-    orders.forEach(function(order) {
-	total_bitcoins += order.amount;
-    }); 
-    
-    response.render("index", {backers: total_backers, percent: backer_percent, bitcoins: total_bitcoins.toFixed(5)});  
-  }).error(function(err) {
-      console.log(error);
-      response.render("index", {backers: 1, bitcoins: 0.00001});  
-  });
-  
-});
-
-// Signup page
-app.get('/signup', function(request, response) {
-    response.render("signup", {signup_flash_msg: request.flash("signup_error"), flash_msg: request.flash("error")});
-});
-
-// Signout page
-app.get('/signout', function(request, response) {
-  request.logout();
-  response.redirect("/");
-});
-
-// User dashboard
-app.get('/dashboard', function(request, response) {
-    if (!request.user) {
-	request.flash("error", "You must be logged in to proceed");
-	response.redirect("/signup");
-    }
-    else {
-	var imageurl = request.user.imageurl;
-	if (!imageurl)
-	    imageurl = "https://dl.dropboxusercontent.com/u/69791784/3Dthon/assets/img/user-icon.png";
-	response.render("dashboard", {username: request.user.name, imageurl: imageurl});
-    }
-});
-
-// Privacy policy
-app.get('/privacy', function(request, response) {
-  response.sendfile(privacyfile);
-});
-
-// Terms
-app.get('/terms', function(request, response) {
-  response.sendfile(termsfile);
-});
 
 
 // Post method

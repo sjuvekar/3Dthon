@@ -51,26 +51,9 @@
     					<a href="#" class="navbar-link" style="color: #EEEEEE"><%= user.name %></a>
 					<img src=<%= user.imageurl %> height="32" width="32"> 
     				</p>
-    					<ul class="nav">
-    						<li>
-    							<a href="#">Home</a>
-    						</li>
-    						<li>
-    							<a href="http://blog.3dthon.com" target="none">Blog</a>
-    						</li>
-						<li class="active">
-    						  <a href="#">Competitions</a>
-    						</li>
-    						<li class="active">
-    						  <a href="#">User Rankings</a>
-    						</li>
-    						<li class="active">
-    						  <a href="#">Forums</a>
-    						</li>
-    						<li>
-						  <a href="/signout">Sign Out</a>
-						</li>
-    					</ul>
+    				<ul class="nav">
+    				  <%- topNav %>
+    				</ul>
     			</div>
     			<!--/.nav-collapse -->
 	  </div>

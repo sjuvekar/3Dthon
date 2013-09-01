@@ -1,5 +1,6 @@
 // Basic routes
-var flash = require('connect-flash');
+var flash = require('connect-flash')
+  , topNav = require('./topNav');
 
 // Basic user checking and responding otherwise
 var login_flash_msg = "You must be logged in to proceed";
@@ -14,7 +15,10 @@ module.exports.render = function(destination, request, response) {
 	var imageurl = request.user.imageurl;
 	if (!imageurl) 
 	    request.user.imageurl = default_imageurl;
-	response.render(destination, {user: request.user}); 
+	response.render(destination, {
+	    user: request.user, 
+	    topNav: topNav.createTopNav(destination)
+	}); 
     }
 }
 

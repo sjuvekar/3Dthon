@@ -66,33 +66,7 @@
     	<div class="span3">
     	  <div class="well sidebar-nav">
     	    <ul class="nav nav-list">
-    	      <li class="nav-header">
-    		dashboard
-    	      </li>
-	      <li>
-		<a href="/competitions">Competitions</a>
-    	      </li>
-    	      <li>
-    		<a href="/rankings">User Rankings</a>
-    	      </li>
-    	      <li>
-    		<a href="/forums">Forums</a>
-    	      </li>
-    	      <li class="nav-header">
-    		My Account
-    	      </li>
-    	      <li>
-    		<a href="/profile">Settings</a>
-    	      </li>
-    	      <li>
-    		<a href="/profile">Profile</a>
-    	      </li>
-    	      <li class="nav-header">
-    		Want to host a competition?
-    	      </li>
-    	      <li class="active">
-    		<a href="/newContest">Host Now</a>
-    	      </li>
+    	      <%- sideNav %>
     	    </ul>
     	  </div>
     	  <!--/.well -->
@@ -137,7 +111,7 @@
 
 	  <hr class="featurette-divider">
     
-	  <h2 class="pagination-centered">
+	  <h2 class="pagination-centered" id="settings">
 	    Change your profile
 	  </h2>
 	  

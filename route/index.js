@@ -1,6 +1,7 @@
 // Basic routes
 var flash = require('connect-flash')
-  , topNav = require('./topNav');
+  , topNav = require('./topNav')
+  , sideNav = require('./sideNav');
 
 // Basic user checking and responding otherwise
 var login_flash_msg = "You must be logged in to proceed";
@@ -17,17 +18,23 @@ module.exports.render = function(destination, request, response) {
 	    request.user.imageurl = default_imageurl;
 	response.render(destination, {
 	    user: request.user, 
-	    topNav: topNav.createTopNav(destination)
+	    topNav: topNav.createTopNav(destination),
+	    sideNav: sideNav.createSideNav(destination) 
 	}); 
     }
 }
 
 
-module.exports.signup = function(request, response) { 
-    response.render("signup", {
+module.exports.signup = function(request, response) {
+    if (request.user) {
+	this.render("dashboard", request, response);
+    }	
+    else {
+	response.render("signup", {
 	    signup_flash_msg: request.flash("signup_error"), 
 	    flash_msg: request.flash("error")
 	}); 
+    }
 };
 
 module.exports.signout = function(request, response) {

@@ -12,29 +12,15 @@ var async   = require('async')
   , localAuth = require("./auth/local")
   , passport = require('passport')
   , flash = require('connect-flash')
-  , User = require('./models/user')
-  , mongoose = require('mongoose');
+  , mongooseDB = require('./models/mongooseDB');
 
-
-var uristring = 
-  process.env.MONGOLAB_URI || 
-  process.env.MONGOHQ_URL || 
-  "mongodb://heroku_app16939569:" + process.env.MONGODB_PASSWORD + "@ds041218.mongolab.com:41218/heroku_app16939569";
-
-mongoose.connect(uristring, function (err, res) {
-  if (err) { 
-    console.log ('ERROR connecting to: ' + uristring + '. ' + err);
-  } else {
-    console.log ('Succeeded connection to: ' + uristring);
-  }
-});
 
 var app = express();
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.set('port', process.env.PORT || 8080);
 
-// Passport js configuration
+// App configuration
 app.use(express.static(__dirname + "/assets"));
 app.use(express.cookieParser());
 app.use(express.bodyParser());
@@ -43,6 +29,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
+// Initialize mongoose DB
+mongooseDB.mongooseInit();
 
 // Passport js sessions
 passport.serializeUser(function(user, done) {

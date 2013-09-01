@@ -107,7 +107,7 @@
     	      <li class="nav-header">
     		Want to host a competition?
     	      </li>
-    	      <li>
+    	      <li class="active">
     		<a href="/newContest">Host Now</a>
     	      </li>
     	    </ul>
@@ -118,43 +118,20 @@
     	<div class="span9 sidebar-nav">
     	  <p class="lead">
     	    <h1>
-    	      Welcome, <%= user.name %></h1>
+    	      <%= user.name %>'s Profile
+	    </h1>
     	  <p>
-    	    Find, host, compete in the competitions
+    	    See your progress, badges and change your settings
     	  </p>
     	  </p>
 	  
-	  <hr class="featurette-divider">
-	  
-	  <form class="form-horizontal">
-
-	    <div class="control-group">
-	      <label class="control-label" for="signin-email">
-		<b>Email:</b>
-	      </label>
-	      <div class="controls">
-		<input type="email" id="signin-email" name="signin_email" placeholder="<%= user.email %>">
-	      </div>
-	    </div>
-
-	    <div class="control-group">
-	      <label class="control-label" for="signin-name">
-		<b>Name:</b>
-	      </label>
-	      <div class="controls">
-		<input type="text" id="signin-name" name="signin_name" placeholder="<%= user.name %>">
-	      </div>
-	    </div>
-
-	  </form>
-
 	  <hr class="featurette-divider">
 
 	  <h2>
 	    Hosted
 	  </h2>
 	  <p class="lead">
-	    No hosted competition so far
+	    No hosted competition so far. Host a competition <a href="/newContest">here</a>
 	  </p>
 	  
 	  <hr class="featurette-divider">
@@ -163,7 +140,7 @@
 	    Competed in
 	  </h2>
 	  <p class="lead">
-	    No competition found
+	    No competition found. <a href="/competitions">Compete here</a>
 	  </p>
 
 	  <hr class="featurette-divider">
@@ -172,16 +149,72 @@
 	    Badges
 	  </h2>
 	  <p class="lead">
-	    No badges found
+	    No badges found. Try earning badges by <a href="/competitions">competition</a> or <a href="/newContest">hosting a competition</a>
 	  </p>
 
-	</div>
-    	
+	  <hr class="featurette-divider">
+    
+	  <h2 class="pagination-centered">
+	    Change your profile
+	  </h2>
+	  
+	  <p class="lead">
+	    <div class="span4">
+	      <form class="form-horizontal">
+	      
+		<div class="control-group">
+		  <label class="control-label" for="signin-name">
+		    <b>Name:</b>
+		  </label>
+		  <div class="controls">
+		    <input type="text" id="signin-name" name="signin_name" placeholder="<%= user.name %>">
+		  </div>
+		</div>
+		
+		<div class="control-group">
+		  <label class="control-label" for="signin-password1">
+		    <b>Password:</b>
+		  </label>
+		  <div class="controls">
+		    <input type="password" id="signin-password1" name="signin_password1" placeholder="Change your password">
+		  </div>
+		</div>
+		
+		<div class="control-group">
+		  <label class="control-label" for="signin-password2">
+		    <b>Retype Password:</b>
+		  </label>
+		  <div class="controls">
+		    <input type="password" id="signin-password2" name="signin_password2" placeholder="Same password">
+		  </div>
+		</div>
+		
+		<div class="control-group">
+		  <div class="controls">
+    		    <button type="submit" class="btn btn-primary btn-large">
+    		      Change Profile
+    		    </button>
+		  </div>
+		</div>
+		
+	      </form>
+	    
+	    </div>
+	  
+	    <div class="span1">
+	    </div>
 
+	    <div class="span2">
+	      <img src="<%= user.imageurl %>" height="100%" width="100%">
+	    </div>
+	    
+	  </p>
+
+    	</div>
       </div>
+
     </div>
 
-    
     <hr class="featurette-divider">
     
     <footer>

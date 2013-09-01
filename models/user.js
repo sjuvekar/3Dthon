@@ -25,7 +25,7 @@ var UserSchema = mongoose.Schema({
 	type: [mongoose.Schema.Types.ObjectId]
     },
     badges: {
-	type: [String]
+	type: [mongoose.Schema.Types.Mixed]
     }
 });
 

@@ -98,7 +98,7 @@ app.get('/auth/google/callback', googleAuth.googleAuthWithCallback());
 // Post method
 app.post("/local_signin", localAuth.local_signin());
 app.post("/local_signup", function(request, response) { localAuth.local_signup(request, response); });
-
+app.post("/post_contest", function(request, response) { route.postContest(request, response); });
 	 
 
 // Code from bitstarter-ssjs-db. Adding orders to Database

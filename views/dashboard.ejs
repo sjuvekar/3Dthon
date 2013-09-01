@@ -48,8 +48,8 @@
     			<div class="nav-collapse collapse">
     				<p class="navbar-text pull-right">
     					Logged in as
-    					<a href="#" class="navbar-link" style="color: #EEEEEE"><%= username %></a>
-					<img src=<%= imageurl %> height="32" width="32"> 
+    					<a href="#" class="navbar-link" style="color: #EEEEEE"><%= user.name %></a>
+					<img src=<%= user.imageurl %> height="32" width="32"> 
     				</p>
     					<ul class="nav">
     						<li>
@@ -118,7 +118,7 @@
     		<div class="span9 sidebar-nav">
     			<p class="lead">
     				<h1>
-    					Welcome, <%= username %></h1>
+    					Welcome, <%= user.name %></h1>
     				<p>
     					Find, host, compete in the competitions
     				</p>

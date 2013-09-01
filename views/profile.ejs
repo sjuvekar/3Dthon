@@ -53,7 +53,7 @@
     				</p>
     				<ul class="nav">
     				  <%- topNav %>
-    				</ul>
+ 				</ul>
     			</div>
     			<!--/.nav-collapse -->
 	  </div>
@@ -62,81 +62,124 @@
     </div>
     
     <div class="container">
-    	<div class="row">
-    		<div class="span3">
-    			<div class="well sidebar-nav">
-    				<ul class="nav nav-list">
-    				  <%- sideNav %>
-    				</ul>
-    			</div>
-    			<!--/.well -->
-    		</div>
-    		<!--/span-->
-    		<div class="span9 sidebar-nav">
-    			<p class="lead">
-    				<h1>
-    					Welcome, <%= user.name %></h1>
-    				<p>
-    					Find, host, compete in the competitions
-    				</p>
-    				<p>
-    				</p>
-    			</p>
-
-    		<!--/span-->
-		
-		<hr class="featurette-divider">
-		
-		  <h2 class="featurette-heading">
-		    Stay tuned!
-		    <span class="muted">We have some amazing products coming up.</span>  
-		    The links here show the general layout of the site 
-		  </h2>
-		  
-		</div>
-    	
-		
+      <div class="row">
+    	<div class="span3">
+    	  <div class="well sidebar-nav">
+    	    <ul class="nav nav-list">
+    	      <%- sideNav %>
+    	    </ul>
+    	  </div>
+    	  <!--/.well -->
     	</div>
-    </div>
+    	<!--/span-->
+    	<div class="span9 sidebar-nav">
+    	  <p class="lead">
+    	    <h1>
+    	      <%= user.name %>'s Profile
+	    </h1>
+    	  <p>
+    	    See your progress, badges and change your settings
+    	  </p>
+    	  </p>
+	  
+	  <hr class="featurette-divider">
 
-    <div class="container">
+	  <h2>
+	    Hosted
+	  </h2>
+	  <p class="lead">
+	    No hosted competition so far. Host a competition <a href="/newContest">here</a>
+	  </p>
+	  
+	  <hr class="featurette-divider">
 
-	<hr class="featurette-divider">
+	  <h2>
+	    Competed in
+	  </h2>
+	  <p class="lead">
+	    No competition found. <a href="/competitions">Compete here</a>
+	  </p>
 
-	<div class="featurette">
-	  <h1 class="featurette-heading pagination-centered">
-	      Till then...Spread the word... Follow us!
-	  </h1>
+	  <hr class="featurette-divider">
 
-	  <div class="row-fluid">
+	  <h2>
+	    Badges
+	  </h2>
+	  <p class="lead">
+	    No badges found. Try earning badges by <a href="/competitions">competition</a> or <a href="/newContest">hosting a competition</a>
+	  </p>
+
+	  <hr class="featurette-divider">
+    
+	  <h2 class="pagination-centered" id="settings">
+	    Change your profile
+	  </h2>
+	  
+	  <p class="lead">
 	    <div class="span4">
-	      <a href="http://facebook.com/3Dthon" target="none">
-		<img src="https://dl.dropboxusercontent.com/u/69791784/3Dthon/assets/img/facebook-icon.png" alt="facebook">
-	      </a>
+	      <form class="form-horizontal">
+	      
+		<div class="control-group">
+		  <label class="control-label" for="signin-name">
+		    <b>Name:</b>
+		  </label>
+		  <div class="controls">
+		    <input type="text" id="signin-name" name="signin_name" placeholder="<%= user.name %>">
+		  </div>
+		</div>
+		
+		<div class="control-group">
+		  <label class="control-label" for="signin-password1">
+		    <b>Password:</b>
+		  </label>
+		  <div class="controls">
+		    <input type="password" id="signin-password1" name="signin_password1" placeholder="Change your password">
+		  </div>
+		</div>
+		
+		<div class="control-group">
+		  <label class="control-label" for="signin-password2">
+		    <b>Retype Password:</b>
+		  </label>
+		  <div class="controls">
+		    <input type="password" id="signin-password2" name="signin_password2" placeholder="Same password">
+		  </div>
+		</div>
+		
+		<div class="control-group">
+		  <div class="controls">
+    		    <button type="submit" class="btn btn-primary btn-large">
+    		      Change Profile
+    		    </button>
+		  </div>
+		</div>
+		
+	      </form>
+	    
 	    </div>
-	    <div class="span4">
-	      <a href="http://twitter.com/3Dthon" target="none">
-		<img src="https://dl.dropboxusercontent.com/u/69791784/3Dthon/assets/img/twitter-icon.png" alt="twitter">
-	      </a>
+	  
+	    <div class="span1">
 	    </div>
-	    <div class="span4">
-	      <a href="https://plus.google.com/b/105110122203783219477/105110122203783219477" target="none">
-		<img src="https://dl.dropboxusercontent.com/u/69791784/3Dthon/assets/img/google-icon.png" alt="google">
-	      </a>
+
+	    <div class="span2">
+	      <img src="<%= user.imageurl %>" height="100%" width="100%">
 	    </div>
 	    
-	  </div>
-	</div>
+	  </p>
 
+    	</div>
+      </div>
 
-	<hr class="featurette-divider">
-    
-    	<footer>
-    		<p>
-    			© RamSud Labs, 2013
-    		</p>
-    	</footer>
     </div>
+
+    <hr class="featurette-divider">
+    
+    <footer>
+      <p>
+    	© RamSud Labs, 2013
+      </p>
+    </footer>
+    
     <!--/.fluid-container-->
 
     <style>

@@ -2,12 +2,13 @@
 var flash = require('connect-flash')
   , topNav = require('./topNav')
   , sideNav = require('./sideNav')
-  , Contest = require("../models/contest");
+  , Contest = require("../models/contest")
+  , User = require("../models/user");
  
 // Basic user checking and responding otherwise
 var login_flash_msg = "You must be logged in to proceed";
 var default_imageurl = "https://dl.dropboxusercontent.com/u/69791784/3Dthon/assets/img/user-icon.png";
-var default_contest_imageurl = "";
+var default_contest_imageurl = "https://dl.dropboxusercontent.com/u/69791784/3Dthon/assets/img/host-contest.png";
 
 module.exports.render = function(destination, request, response) {
     if (!request.user) {
@@ -48,27 +49,42 @@ module.exports.signout = function(request, response) {
 // Post a new contest
 module.exports.postContest = function(request, response) {
     if (!request.contest_title || request.contest_title === "")
-	response.render("/newContest", {"error": "Title can not be blank"});
+	response.redirect("/newContest");
     
-    var user = request.user;
-    
-    var imageurl = request.contest_image;
+    var imageurl = request.body.contest_image;
     if (!imageurl || imageurl === "")
 	imageurl = default_contest_imageurl;
     
     var new_contest = new Contest({
-	    title: request.contest_title,
-	    description: request.contest_description.val(),
-	    createdBy: user._id,
+	    title: request.body.contest_title,
+	    description: request.body.contest_description,
+	    createdBy: request.user._id,
 	    endTime: new Date(3014, 12, 31, 0, 0, 0, 0)
 	});
     new_contest.images.push(imageurl);
-    console.log(new_contest);
     
     new_contest.save(function(err) {
+	if (!err) {
+	    User.findOne({email: request.user.email}, function(err, oldUser) { 
+		oldUser.hosted.push(new_contest._id);
+		oldUser.badges.push("Hosted");
+		oldUser.save(function(err) {
+		    if (!err) {
+			response.redirect("/competitions");
+		    }
+		    else {
+			request.contest_flash_error = "Could not create contest, something bad happened. Please try again!";
+			response.redirect("/newContest");
+		    }
+		});
+	    });
 	    
-	});
+	}
+	else {
+	    request.contest_flash_error = "Could not create contest, something bad happened. Please try again!";
+	    response.redirect("/newContest");
+	}
+    });
 
-    user.hosted.push(_id);
-    user.save();
+	
 }

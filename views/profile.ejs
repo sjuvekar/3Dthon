@@ -88,7 +88,15 @@
 	    Hosted
 	  </h2>
 	  <p class="lead">
-	    No hosted competition so far. Host a competition <a href="/newContest">here</a>
+	    <% if (user.hosted && user.hosted.length > 0) { %>
+            <ul class="nav profile-list"> 
+	      <% for(var i = 0; i < user.hosted.length; i++) { %>
+		 <li><%= user.hosted[i] %></li>
+	      <% } %>
+	    </ul>  
+            <% } else { %> 
+	     No hosted competition so far. Host a competition <a href="/newContest">here</a> 
+            <% } %>
 	  </p>
 	  
 	  <hr class="featurette-divider">
@@ -97,7 +105,15 @@
 	    Competed in
 	  </h2>
 	  <p class="lead">
-	    No competition found. <a href="/competitions">Compete here</a>
+	    <% if (user.competed && user.competed.length > 0) { %>
+            <ul class="nav profile-list"> 
+	      <% for(var i = 0; i < user.competed.length; i++) { %>
+		 <li><%= user.competed[i] %></li>
+	      <% } %>
+	    </ul>  
+            <% } else { %> 
+	       No competition found. <a href="/competitions">Compete here</a>
+	    <% } %>
 	  </p>
 
 	  <hr class="featurette-divider">
@@ -106,7 +122,15 @@
 	    Badges
 	  </h2>
 	  <p class="lead">
-	    No badges found. Try earning badges by <a href="/competitions">competition</a> or <a href="/newContest">hosting a competition</a>
+	    <% if (user.badges && user.badges.length > 0) { %>
+            <ul class="nav profile-list"> 
+	      <% for(var i = 0; i < user.badges.length; i++) { %>
+		 <li><%= user.badges[i] %></li>
+	      <% } %>
+	    </ul>  
+            <% } else { %> 
+	       No badges found. Try earning badges by <a href="/competitions">competition</a> or <a href="/newContest">hosting a competition</a>
+	    <% } %>
 	  </p>
 
 	  <hr class="featurette-divider">
@@ -373,6 +397,16 @@
         
       }
 
+      .profile-list {
+	  width: 100%;
+	  border-radius:5px;
+	  position:relative;
+	  padding:1em;
+	  background:#fcfcfc;
+	  box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.2);
+	  -o-box-shadow: 0px 0px 1px 1px  rgba(0,0,0,0.2);
+	  -moz-box-shadow: 0px 0px 1px 1px  rgba(0,0,0,0.2);
+	}
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
     </script>

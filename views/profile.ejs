@@ -90,8 +90,17 @@
 	  <p class="lead">
 	    <% if (user.hosted && user.hosted.length > 0) { %>
             <ul class="nav profile-list"> 
-	      <% for(var i = 0; i < user.hosted.length; i++) { %>
-		 <li><%= user.hosted[i] %></li>
+	      <% for(var i = 0; i < competitions.length; i++) { %>
+		 <li>
+		   <div class="row">
+		     <div class="span1" style="border: 1px solid black">
+		       <img src="<%= competitions[i].images[0] %>" height=100% width=100%>
+		     </div>
+		     <div class="span7">
+		       <h3><%= competitions[i].title %></h3>
+		     </div>
+		   </div>
+		 </li>
 	      <% } %>
 	    </ul>  
             <% } else { %> 
@@ -125,7 +134,11 @@
 	    <% if (user.badges && user.badges.length > 0) { %>
             <ul class="nav profile-list"> 
 	      <% for(var i = 0; i < user.badges.length; i++) { %>
-		 <li><%= user.badges[i] %></li>
+		 <li>
+		   <div class="pagination-centered" style="color: #00688B">
+		     <h4><%= user.badges[i] %></h4>
+		   </div>
+		 </li>
 	      <% } %>
 	    </ul>  
             <% } else { %> 

@@ -3,7 +3,8 @@ var flash = require('connect-flash')
   , topNav = require('./topNav')
   , sideNav = require('./sideNav')
   , Contest = require("../models/contest")
-  , User = require("../models/user");
+  , User = require("../models/user")
+  , Contest = require("../models/contest");
  
 // Basic user checking and responding otherwise
 var login_flash_msg = "You must be logged in to proceed";
@@ -19,11 +20,39 @@ module.exports.render = function(destination, request, response) {
 	var imageurl = request.user.imageurl;
 	if (!imageurl) 
 	    request.user.imageurl = default_imageurl;
-	response.render(destination, {
-	    user: request.user, 
-	    topNav: topNav.createTopNav(destination),
-	    sideNav: sideNav.createSideNav(destination) 
-	}); 
+	if (["settings", "profile", "competitions"].indexOf(destination) != -1) {
+	    if (destination === "competitions") {
+		Contest.find({}, function(err, result) {
+		    if (!err) {
+			response.render(destination, {
+			    user: request.user,
+			    competitions: result,
+			    topNav: topNav.createTopNav(destination),
+			    sideNav: sideNav.createSideNav(destination) 
+			}); 
+		    }
+		});
+	    }
+	    else {
+		Contest.find({"createdBy": request.user._id}, function(err, result) { 
+		    if(!err) {
+			response.render(destination, {
+			    user: request.user,
+			    competitions: result,
+			    topNav: topNav.createTopNav(destination),
+			    sideNav: sideNav.createSideNav(destination) 
+			}); 
+		    }
+		});
+	    }
+	}
+	else {
+	    response.render(destination, {
+		user: request.user,
+		topNav: topNav.createTopNav(destination),
+		sideNav: sideNav.createSideNav(destination) 
+	    }); 
+	}
     }
 }
 

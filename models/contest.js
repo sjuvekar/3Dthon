@@ -23,6 +23,9 @@ var ContestSchema = mongoose.Schema({
     },
     images: {
 	type: [String]
+    },
+    reward: {
+	type: [String]
     }
 });
 

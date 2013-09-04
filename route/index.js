@@ -83,12 +83,19 @@ module.exports.postContest = function(request, response) {
     var imageurl = request.body.contest_image;
     if (!imageurl || imageurl === "")
 	imageurl = default_contest_imageurl;
-    
+
+    var reward = request.body.contest_reward;
+    if (!reward || reward == "0" || reward == "") 
+	reward = "Kudos";
+    else
+	reward = "$" + reward;
+
     var new_contest = new Contest({
 	    title: request.body.contest_title,
 	    description: request.body.contest_description,
 	    createdBy: request.user._id,
-	    endTime: new Date(3014, 12, 31, 0, 0, 0, 0)
+	    endTime: new Date(3014, 12, 31, 0, 0, 0, 0),
+	    reward: reward
 	});
     new_contest.images.push(imageurl);
     

@@ -25,7 +25,7 @@ var ContestSchema = mongoose.Schema({
 	type: [String]
     },
     reward: {
-	type: [String]
+	type: String
     }
 });
 

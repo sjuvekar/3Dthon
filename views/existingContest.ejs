@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Le styles -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="/css/bootstrap.css" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic" rel="stylesheep" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800" rel="stylesheep" type="text/css">
     <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fsocial-buttons.css">
@@ -19,7 +19,7 @@
 	font-family: 'Open Sans', Helvetica, Arial, sans-serif; 
       }
     </style>
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js">
@@ -74,139 +74,39 @@
     	<!--/span-->
     	<div class="span9 sidebar-nav">
     	  <p class="lead">
-    	    <h1>
-    	      <%= user.name %>'s Profile
-	    </h1>
-    	  <p>
-    	    See your progress, badges and change your settings
+	    <div class="row">
+	      <div class="span2">
+		<img src="<%= competitions.images[0] %>" height=100% width=100%>
+	      </div>
+	      <div class="span6">
+		<h1>
+    		  <%= competitions.title %>
+		</h1>
+	      </div>
+	    </div>
     	  </p>
-    	  </p>
 	  
 	  <hr class="featurette-divider">
-
-	  <h2>
-	    Hosted
-	  </h2>
-	  <p class="lead">
-	    <% if (user.hosted && user.hosted.length > 0) { %>
-            <ul class="nav profile-list"> 
-	      <% for(var i = 0; i < competitions.length; i++) { %>
-		 <li>
-		   <div class="row">
-		     <div class="span1" style="border: 1px solid black">
-		       <img src="<%= competitions[i].images[0] %>" height=100% width=100%>
-		     </div>
-		     <div class="span7">
-		       <h3><%= competitions[i].title %></h3>
-		     </div>
-		   </div>
-		 </li>
-	      <% } %>
-	    </ul>  
-            <% } else { %> 
-	     No hosted competition so far. Host a competition <a href="/newContest">here</a> 
-            <% } %>
-	  </p>
 	  
-	  <hr class="featurette-divider">
-
-	  <h2>
-	    Competed in
-	  </h2>
 	  <p class="lead">
-	    <% if (user.competed && user.competed.length > 0) { %>
-            <ul class="nav profile-list"> 
-	      <% for(var i = 0; i < user.competed.length; i++) { %>
-		 <li><%= user.competed[i] %></li>
-	      <% } %>
-	    </ul>  
-            <% } else { %> 
-	       No competition found. <a href="/competitions">Compete here</a>
-	    <% } %>
+	    <pre>
+	      <%- competitions.description %>
+	    </pre>
 	  </p>
 
-	  <hr class="featurette-divider">
-
-	  <h2>
-	    Badges
-	  </h2>
 	  <p class="lead">
-	    <% if (user.badges && user.badges.length > 0) { %>
-            <ul class="nav profile-list"> 
-	      <% for(var i = 0; i < user.badges.length; i++) { %>
-		 <li>
-		   <div class="pagination-centered" style="color: #00688B">
-		     <h4><%= user.badges[i] %></h4>
-		   </div>
-		 </li>
-	      <% } %>
-	    </ul>  
-            <% } else { %> 
-	       No badges found. Try earning badges by <a href="/competitions">competition</a> or <a href="/newContest">hosting a competition</a>
-	    <% } %>
+	    <b>Reward: </b>
+	    <%= competitions.reward %>
 	  </p>
 
-	  <hr class="featurette-divider">
-    
-	  <h2 class="pagination-centered" id="settings">
-	    Change your profile
-	  </h2>
-	  
 	  <p class="lead">
-	    <div class="span4">
-	      <form class="form-horizontal">
-	      
-		<div class="control-group">
-		  <label class="control-label" for="signin-name">
-		    <b>Name:</b>
-		  </label>
-		  <div class="controls">
-		    <input type="text" id="signin-name" name="signin_name" placeholder="<%= user.name %>">
-		  </div>
-		</div>
-		
-		<div class="control-group">
-		  <label class="control-label" for="signin-password1">
-		    <b>Password:</b>
-		  </label>
-		  <div class="controls">
-		    <input type="password" id="signin-password1" name="signin_password1" placeholder="Change your password">
-		  </div>
-		</div>
-		
-		<div class="control-group">
-		  <label class="control-label" for="signin-password2">
-		    <b>Retype Password:</b>
-		  </label>
-		  <div class="controls">
-		    <input type="password" id="signin-password2" name="signin_password2" placeholder="Same password">
-		  </div>
-		</div>
-		
-		<div class="control-group">
-		  <div class="controls">
-    		    <button type="submit" class="btn btn-primary btn-large">
-    		      Change Profile
-    		    </button>
-		  </div>
-		</div>
-		
-	      </form>
-	    
-	    </div>
-	  
-	    <div class="span1">
-	    </div>
-
-	    <div class="span2">
-	      <img src="<%= user.imageurl %>" height="100%" width="100%">
-	    </div>
-	    
+	    <b>Ends at: </b>
+	    <%= competitions.endTime %>
 	  </p>
 
     	</div>
       </div>
-
+      
     </div>
 
     <hr class="featurette-divider">
@@ -410,7 +310,7 @@
         
       }
 
-      .profile-list li {
+      .competition-list li {
 	  width: 100%;
 	  border-radius:5px;
 	  position:relative;
@@ -420,10 +320,15 @@
 	  -o-box-shadow: 0px 0px 1px 1px  rgba(0,0,0,0.2);
 	  -moz-box-shadow: 0px 0px 1px 1px  rgba(0,0,0,0.2);
 	}
+    
+      .competition-list li a,
+      .competition-list li a:visited {
+          color: #444444;
+      }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
     </script>
-    <script src="js/bootstrap.js">
+    <script src="/js/bootstrap.js">
     </script>
     <script>
 

@@ -80,7 +80,29 @@
     	  </p>
 	  
 	  <hr class="featurette-divider">
-
+	  
+	  <ul class="nav competition-list">
+	  <% for(var i = 0; i < competitions.length; i++) { %>
+	     <li>
+	       <a href="/competitions/<%= competitions[i].id %>">
+	       <div class="row">
+		 <div class="span2" style="border: 1px solid black">
+		   <img src="<%= competitions[i].images[0] %>" height=100% width=100%>
+		 </div>
+		 <div class="span6">
+		   <h3><%= competitions[i].title %></h3>
+		   <p class="lead">
+		     <b>Reward: </b> <%= competitions[i].reward %>
+		   </p>
+		   <p class="lead">
+		     <b>Ends At:</b> <%= competitions[i].endTime %>
+		   </p>
+		 </div>
+	       </div>
+	       </a>
+	     </li>
+	  <% } %>
+	  </ul>
     	</div>
       </div>
       
@@ -287,6 +309,21 @@
         
       }
 
+      .competition-list li {
+	  width: 100%;
+	  border-radius:5px;
+	  position:relative;
+	  padding:1em;
+	  background:#fcfcfc;
+	  box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.2);
+	  -o-box-shadow: 0px 0px 1px 1px  rgba(0,0,0,0.2);
+	  -moz-box-shadow: 0px 0px 1px 1px  rgba(0,0,0,0.2);
+	}
+    
+      .competition-list li a,
+      .competition-list li a:visited {
+          color: #444444;
+      }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
     </script>

@@ -20,7 +20,7 @@ module.exports.render = function(destination, request, response) {
 	var imageurl = request.user.imageurl;
 	if (!imageurl) 
 	    request.user.imageurl = default_imageurl;
-	if (["settings", "profile", "competitions"].indexOf(destination) != -1) {
+	if (["settings", "profile", "competitions", "existingContest"].indexOf(destination) != -1) {
 	    if (destination === "competitions") {
 		Contest.find({}, function(err, result) {
 		    if (!err) {
@@ -30,6 +30,19 @@ module.exports.render = function(destination, request, response) {
 			    topNav: topNav.createTopNav(destination),
 			    sideNav: sideNav.createSideNav(destination) 
 			}); 
+		    }
+		});
+	    }
+	    else if (destination === "existingContest") {
+		Contest.findById(request.params.id, function(err, result) {
+		    console.log(result);
+		    if (!err) {
+			response.render(destination, {
+			    user: request.user,
+			    competitions: result,
+			    topNav: topNav.createTopNav(destination),
+			    sideNav: sideNav.createSideNav(destination) 
+			});
 		    }
 		});
 	    }

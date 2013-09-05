@@ -8,22 +8,18 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Le styles -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="/css/bootstrap.css" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic" rel="stylesheep" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800" rel="stylesheep" type="text/css">
     <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fsocial-buttons.css">
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap-wysihtml5.css"></link>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/wysihtml5-0.3.0.js"></script>
-    <script src="js/bootstrap-wysihtml5.js"></script>
+    
     <style>
       body { 
 	padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
 	font-family: 'Open Sans', Helvetica, Arial, sans-serif; 
       }
     </style>
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js">
@@ -78,66 +74,36 @@
     	<!--/span-->
     	<div class="span9 sidebar-nav">
     	  <p class="lead">
-    	    <h1>
-    	      Create a New Competitition
-	    </h1>
+	    <div class="row">
+	      <div class="span2">
+		<img src="<%= competitions.images[0] %>" height=100% width=100%>
+	      </div>
+	      <div class="span6">
+		<h1>
+    		  <%= competitions.title %>
+		</h1>
+	      </div>
+	    </div>
     	  </p>
 	  
-	  <p class="contest-flash">
-	      
-	  </p>
-	  
 	  <hr class="featurette-divider">
+	  
+	  <p class="lead">
+	    <pre>
+	      <%- competitions.description %>
+	    </pre>
+	  </p>
 
-	  <form> <!-- action="post_contest" method="post"> -->
-	    
-	    <div class="control-group">
-	      <label class="control-label" for="contest-title">
-		<b> Title:</b>
-	      </label>
-	      <div class="controls">
-		<input type="text" id="contest-title" name="contest_title" class="span9">
-	      </div>
-	    </div>
-	    
-	    <div class="control-group">
-	      <label class="control-label" for="contest-description">
-		<b> Description:</b>
-	      </label>
-	      <div class="controls">
-		<textarea id="contest-description" name="contest_description" placeholder="Enter Description..." style="height: 40%" class="span9"></textarea>
-		<script type="text/javascript">
-		  $("#contest-description").wysihtml5();
-		</script>
-	      </div>
-	    </div>
-	    
-	    <div class="control-group">
-	      <label class="control-label" for="contest-image">
-		<b> Image link: </b> (We only allow images from external public links; e.g. Dropbox, Amazon S3 etc)
-	      </label>
-	      <div class="controls">
-		<input type="text" id="contest-image" name="contest_image" class="span9">
-	      </div>
-	    </div>
+	  <p class="lead">
+	    <b>Reward: </b>
+	    <%= competitions.reward %>
+	  </p>
 
-	    <div class="control-group">
-	      <label class="control-label" for="contest-reward">
-		<b> Reward($): </b> (*You agree to pay this at the end of the contest)
-	      </label>
-	      <div class="controls">
-		<input type="number" id="contest-reward" name="contest_reward" class="span9">
-	      </div>
-	    </div>
+	  <p class="lead">
+	    <b>Ends at: </b>
+	    <%= competitions.endTime %>
+	  </p>
 
-	    <div class="control-group">
-	      <div class="controls">
-		<button type="submit" class="btn btn-primary btn-large">
-		  Submit
-		</button>
-	      </div>
-	    </div>
-	  </form>
     	</div>
       </div>
       
@@ -343,14 +309,29 @@
         }
         
       }
-    
-    /* Special signup flash message */
-    .contest-flash {
-       color: #EE0000;
-       font-size: 20px;
-    }
-    
-    </style>
 
-</body>
+      .competition-list li {
+	  width: 100%;
+	  border-radius:5px;
+	  position:relative;
+	  padding:1em;
+	  background:#fcfcfc;
+	  box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.2);
+	  -o-box-shadow: 0px 0px 1px 1px  rgba(0,0,0,0.2);
+	  -moz-box-shadow: 0px 0px 1px 1px  rgba(0,0,0,0.2);
+	}
+    
+      .competition-list li a,
+      .competition-list li a:visited {
+          color: #444444;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
+    </script>
+    <script src="/js/bootstrap.js">
+    </script>
+    <script>
+
+    </script>
+  </body>
 </html>

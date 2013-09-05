@@ -68,12 +68,15 @@ app.get('/signup', function(request, response) { route.signup(request, response)
 app.get('/signout', function(request, response) { route.signout(request, response); });
 
 // User dashboard, profile and competitions
-app.get('/dashboard', function(request, response) { route.render("dashboard", request, response); });
+app.get('/dashboard', function(request, response) { route.render("competitions", request, response); });
 app.get("/profile", function(request, response) { route.render("profile", request, response); });
 app.get("/competitions", function(request, response) { route.render("competitions", request, response); });
 app.get("/rankings", function(request, response) { route.render("rankings", request, response); });
 app.get("/forums", function(request, response) { route.render("forums", request, response); });
 app.get("/newContest", function(request, response) { route.render("newContest", request, response); });
+
+// Get a particular competition. TODO 
+app.get("/competitions/:id?", function(request, response) { route.render("existingContest", request, response); });
 
 // Privacy and Terms, Static pages
 app.get('/privacy', function(request, response) { response.render("privacy"); });
@@ -98,7 +101,7 @@ app.get('/auth/google/callback', googleAuth.googleAuthWithCallback());
 // Post method
 app.post("/local_signin", localAuth.local_signin());
 app.post("/local_signup", function(request, response) { localAuth.local_signup(request, response); });
-
+app.post("/post_contest", function(request, response) { route.postContest(request, response); });
 	 
 
 // Code from bitstarter-ssjs-db. Adding orders to Database

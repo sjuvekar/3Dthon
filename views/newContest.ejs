@@ -12,7 +12,11 @@
     <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic" rel="stylesheep" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800" rel="stylesheep" type="text/css">
     <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fsocial-buttons.css">
-    
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap-wysihtml5.css"></link>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/wysihtml5-0.3.0.js"></script>
+    <script src="js/bootstrap-wysihtml5.js"></script>
     <style>
       body { 
 	padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
@@ -79,8 +83,61 @@
 	    </h1>
     	  </p>
 	  
+	  <p class="contest-flash">
+	      
+	  </p>
+	  
 	  <hr class="featurette-divider">
 
+	  <form> <!-- action="post_contest" method="post"> -->
+	    
+	    <div class="control-group">
+	      <label class="control-label" for="contest-title">
+		<b> Title:</b>
+	      </label>
+	      <div class="controls">
+		<input type="text" id="contest-title" name="contest_title" class="span9">
+	      </div>
+	    </div>
+	    
+	    <div class="control-group">
+	      <label class="control-label" for="contest-description">
+		<b> Description:</b>
+	      </label>
+	      <div class="controls">
+		<textarea id="contest-description" name="contest_description" placeholder="Enter Description..." style="height: 40%" class="span9"></textarea>
+		<script type="text/javascript">
+		  $("#contest-description").wysihtml5();
+		</script>
+	      </div>
+	    </div>
+	    
+	    <div class="control-group">
+	      <label class="control-label" for="contest-image">
+		<b> Image link: </b> (We only allow images from external public links; e.g. Dropbox, Amazon S3 etc)
+	      </label>
+	      <div class="controls">
+		<input type="text" id="contest-image" name="contest_image" class="span9">
+	      </div>
+	    </div>
+
+	    <div class="control-group">
+	      <label class="control-label" for="contest-reward">
+		<b> Reward($): </b> (*You agree to pay this at the end of the contest)
+	      </label>
+	      <div class="controls">
+		<input type="number" id="contest-reward" name="contest_reward" class="span9">
+	      </div>
+	    </div>
+
+	    <div class="control-group">
+	      <div class="controls">
+		<button type="submit" class="btn btn-primary btn-large">
+		  Submit
+		</button>
+	      </div>
+	    </div>
+	  </form>
     	</div>
       </div>
       
@@ -286,14 +343,14 @@
         }
         
       }
-
+    
+    /* Special signup flash message */
+    .contest-flash {
+       color: #EE0000;
+       font-size: 20px;
+    }
+    
     </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
-    </script>
-    <script src="js/bootstrap.js">
-    </script>
-    <script>
 
-    </script>
-  </body>
+</body>
 </html>

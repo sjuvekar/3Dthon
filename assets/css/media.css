@@ -220,6 +220,7 @@ nav .container .columns, nav .cotainer .column, #ajaxpage .columns, #ajaxpage .c
 	 
 .home-logo-text a {
 	font-size:32px;
+	background: rgba(200, 200, 200, 0.75);
 }
 .main-menu.large, .logo.large {
     height: 60px;
@@ -256,6 +257,7 @@ nav .container {
 }
 .home-logo-text a {
 	font-size:90px;
+	background: rgba(200, 200, 200, 0.75);
 }
 
 .slider-text {

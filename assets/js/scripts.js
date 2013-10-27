@@ -46,7 +46,7 @@ var   window_height = $(window).height(),
      $('#home-slider').flexslider({						
 			animation: "swing",
 			direction: "vertical", 
-			slideshow: false,
+			slideshow: true,
 			slideshowSpeed: 3500,
 			animationDuration: 1000,
 			directionNav: false,
@@ -801,7 +801,7 @@ $(window).load(function(){
  $('#home-slider.flexslider').flexslider({						
 		animation: "swing",
 		direction: "vertical", 
-		slideshow: false,
+		slideshow: true,
 		slideshowSpeed: 3500,
 		animationDuration: 1000,
 		directionNav: false,

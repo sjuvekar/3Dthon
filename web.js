@@ -49,9 +49,7 @@ passport.deserializeUser(function(id, done) {
 
 
 // Main page
-app.get('/', function(request, response) {
-    response.render("index");
-});
+app.get('/', function(request, response) { route.render("index", request, response); });
 
 // Signup and Signout
 app.get('/signup', function(request, response) { route.signup(request, response); });

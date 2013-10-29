@@ -12,7 +12,17 @@ var default_imageurl = "https://dl.dropboxusercontent.com/u/69791784/3Dthon/asse
 var default_contest_imageurl = "https://dl.dropboxusercontent.com/u/69791784/3Dthon/assets/img/host-contest.png";
 
 module.exports.render = function(destination, request, response) {
-    if (!request.user) {
+    if (destination === "index") {
+	User.count(function(uError, nUsers) {
+		Contest.count(function(cError, nCompetitions) {
+			response.render("index", {
+				users: nUsers,
+				competitions: nCompetitions
+			    });
+		});
+	 });
+    }
+    else if (!request.user) {
 	request.flash("error", login_flash_msg);
 	response.redirect("/signup");
     }

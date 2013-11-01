@@ -1601,31 +1601,16 @@ p.quote {
 	height:57px;
 	line-height:57px;
 }
+
 input[type="text"], input[type="password"], input[type="email"], textarea, select {
-	background: #fff;
-	padding: 8px 8px;
-	outline: none;
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
-	border-radius: 2px;
-	font-family: Arial, Helvetica, sans-serif;
+    border: 1px solid #e8e8e8;
+	width: 90%;
 	font-size: 13px;
-	color: #666;
-	margin: 0;
-	width: 200px;
-	max-width: 100%;
-	display: block;
-	margin-bottom: 20px;
-	width: 180px;
-	color: #999;
-	-moz-box-shadow: #ececec 0px 1px 4px inset, #f8f8f8 -5px -5px 0px 0px, #f8f8f8 5px 5px 0px 0px, #f8f8f8 5px 0px 0px 0px, #f8f8f8 0px 5px 0px 0px, #f8f8f8 5px -5px 0px 0px, #f8f8f8 -5px 5px 0px 0px;
-	-webkit-box-shadow: #ececec 0px 1px 4px inset, #f8f8f8 -5px -5px 0px 0px, #f8f8f8 5px 5px 0px 0px, #f8f8f8 5px 0px 0px 0px, #f8f8f8 0px 5px 0px 0px, #f8f8f8 5px -5px 0px 0px, #f8f8f8 -5px 5px 0px 0px;
-	box-shadow: #ececec 0px 1px 4px inset, #f8f8f8 -5px -5px 0px 0px, #f8f8f8 5px 5px 0px 0px, #f8f8f8 5px 0px 0px 0px, #f8f8f8 0px 5px 0px 0px, #f8f8f8 5px -5px 0px 0px, #f8f8f8 -5px 5px 0px 0px;
-	border: 1px solid #e8e8e8
-}
-input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, textarea:focus {
-	border: 1px solid #e0e0e0;
-	color: #333;
+	color: #747474;
+	padding: 20px 2%;
+	float: left;
+	margin: 0 1% 2%;
+	border-radius: 2px;
 }
 
 

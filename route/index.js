@@ -2,6 +2,7 @@
 var flash = require('connect-flash')
   , topNav = require('./topNav')
   , sideNav = require('./sideNav')
+  , main = require('./main')
   , Contest = require("../models/contest")
   , User = require("../models/user")
   , Contest = require("../models/contest");
@@ -12,19 +13,10 @@ var default_imageurl = "https://dl.dropboxusercontent.com/u/69791784/3Dthon/asse
 var default_contest_imageurl = "https://dl.dropboxusercontent.com/u/69791784/3Dthon/assets/img/host-contest.png";
 
 module.exports.render = function(destination, request, response) {
-    if (destination === "index") {
-	User.count(function(uError, nUsers) {
-		Contest.count(function(cError, nCompetitions) {
-			response.render("index", {
-				users: nUsers,
-				competitions: nCompetitions
-			    });
-		});
-	 });
-    }
+    if (destination === "index") main.render(request, response)
     else if (!request.user) {
-	request.flash("error", login_flash_msg);
-	response.redirect("/signup");
+			request.flash("error", login_flash_msg);
+			response.redirect("/signup");
     }
     else {
 	var imageurl = request.user.imageurl;

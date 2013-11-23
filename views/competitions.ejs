@@ -29,10 +29,11 @@
     
     
     <link id="layout_color" href="css/light.css" rel="stylesheet" type="text/css"/>  
-    <link id="primary_color_scheme" href="css/colors/yellow.css" rel="stylesheet" type="text/css"/>      
+    <link id="primary_color_scheme" href="css/colors/blue.css" rel="stylesheet" type="text/css"/>      
+    
   </head>
   
-  <body>
+  <body class="multipage">
     <nav class="light">
       <!-- START CONTAINER -->	
       <div class="container clearfix">			
@@ -60,7 +61,53 @@
       </div><!-- END CONTAINER -->	
     </nav>
     
-    <div class="page">
+    <div class="page-wrap">
+    	<div class="page multipage">
+      	<div class="container">
+        	<div class="row">
+          	<div class="sixteen columns">
+            	<div class="title">
+              	<h1>Active Competitions</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- END OF CONTAINER -->
+        
+        <div class="container">
+        	<div class="sixteen columns">
+						<% for(var i = 0; i < competitions.length; i++) { %>
+            	<div class="post">
+              <div class="row fullwidth grey">
+              	<div class="four columns">
+                	<a href="/competitions/<%= competitions[i].id %>">
+                  	<img src="<%= competitions[i].images[0] %>" alt="portfolio slider">
+                  </a>
+                </div>
+                <div class="eleven columns">
+                	<div class="post-title">
+                		<a href="/competitions/<%= competitions[i].id %>">
+                  		<%= competitions[i].title %>
+                  	</a>
+                	</div>
+                	<div class="post-meta">
+                		Ends at: <%= competitions[i].endTime %>
+                	</div>
+                	<div class="post-content">
+                		<%- competitions[i].description %>
+										<p>
+											<h6>Reward: <%= competitions[i].reward %></h6>
+                    </p>
+                	</div>
+                </div>
+              </div>
+              
+             <% } %>
+          </div>
+        </div>
+        <!-- END OF CONTAINER -->
+        
+      </div>
     </div>
     
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>  

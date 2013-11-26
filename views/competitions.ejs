@@ -14,6 +14,8 @@
     <meta name="author" content="RamSud Labs"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+    <!-- USUAL BOOTSTRAP -->
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
 	<!-- JARVIS THEME STYLESHEETS -->
      
 	<link rel="stylesheet" href="css/skeleton.css" type="text/css">
@@ -30,6 +32,23 @@
     
     <link id="layout_color" href="css/light.css" rel="stylesheet" type="text/css"/>  
     <link id="primary_color_scheme" href="css/colors/blue.css" rel="stylesheet" type="text/css"/>      
+
+    <style>
+      .col{
+        margin-top: -99999px;
+        padding-top: 99999px;
+        margin-bottom: -99999px;
+        padding-bottom: 99999px;
+      }
+
+      .col-wrap{  
+        overflow: hidden;   
+      }  
+
+      .competition-img {
+        background: #FFDD00
+      }
+      </style>
     
   </head>
   
@@ -74,35 +93,46 @@
         </div>
         <!-- END OF CONTAINER -->
         
-        <div class="container">
-        	<div class="sixteen columns">
-						<% for(var i = 0; i < competitions.length; i++) { %>
-            	<div class="post">
-              <div class="row fullwidth grey">
-              	<div class="four columns">
-                	<a href="/competitions/<%= competitions[i].id %>">
-                  	<img src="<%= competitions[i].images[0] %>" alt="portfolio slider">
-                  </a>
-                </div>
-                <div class="eleven columns">
-                	<div class="post-title">
-                		<a href="/competitions/<%= competitions[i].id %>">
-                  		<%= competitions[i].title %>
-                  	</a>
-                	</div>
-                	<div class="post-meta">
-                		Ends at: <%= competitions[i].endTime %>
-                	</div>
-                	<div class="post-content">
-                		<%- competitions[i].description %>
-										<p>
-											<h6>Reward: <%= competitions[i].reward %></h6>
-                    </p>
-                	</div>
-                </div>
-              </div>
-              
-             <% } %>
+        <div class="container-fluid">
+
+          <div class="sixteen columns">
+	    <% for(var i = 0; i < competitions.length; i++) { %>
+
+		 
+		 <div class="post">
+	       <div class="row-fluid col-wrap fullwidth grey">
+              	   <div class="span2 col competition-img"> 
+                     <a href="/competitions/<%= competitions[i].id %>">
+                       <img src="<%= competitions[i].images[0] %>" alt="portfolio slider">
+                     </a>
+                   </div> <!-- END OF SPAN2 -->
+ 
+                   <div class="span10 col">
+
+                     <div class="post-title">
+                       <a href="/competitions/<%= competitions[i].id %>">
+                  	 <%= competitions[i].title %>
+                       </a>
+                     </div>
+
+                     <div class="post-meta">
+                       Ends at: <%= competitions[i].endTime %>
+                     </div>
+
+                     <div class="post-content">
+                       <%- competitions[i].description %> 
+		       <p>
+			 <h6>Reward: <%= competitions[i].reward %></h6>
+                       </p>
+                     </div>
+
+                   </div> <!-- END OF SPAN10 -->
+
+		 </div> <!-- END OF POST -->
+		 
+	       </div> <!-- END OF row-fluid -->
+
+	      <% } %> <!-- END OF FOR -->
           </div>
         </div>
         <!-- END OF CONTAINER -->

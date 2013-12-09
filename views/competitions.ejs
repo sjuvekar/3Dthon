@@ -99,7 +99,7 @@
 	    <% for(var i = 0; i < competitions.length; i++) { %>
 
 		 
-		 <div class="post">
+		 <div class="post" style="margin-bottom: 10px">
 	       <div class="row-fluid col-wrap fullwidth grey">
               	   <div class="span2 col competition-img"> 
                      <a href="/competitions/<%= competitions[i].id %>">
@@ -107,7 +107,7 @@
                      </a>
                    </div> <!-- END OF SPAN2 -->
  
-                   <div class="span10 col">
+                   <div class="span10">
 
                      <div class="post-title">
                        <a href="/competitions/<%= competitions[i].id %>">
@@ -120,8 +120,7 @@
                      </div>
 
                      <div class="post-content">
-                       <%- competitions[i].description %> 
-		       <p>
+                       <p>
 			 <h6>Reward: <%= competitions[i].reward %></h6>
                        </p>
                      </div>

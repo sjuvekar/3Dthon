@@ -1,5 +1,5 @@
 module.exports.createSideNav = function(destination) {
-    var ret_str = "<li class='nav-header'>dashboard</li>\n";
+    var ret_str = "<li class='nav-header'>competitions</li>\n";
     
     var sideLinks = ["competitions", "rankings", "forums"];
     var sideLinkNames = ["Competitions", "User Rankings", "Discussion Forums"];

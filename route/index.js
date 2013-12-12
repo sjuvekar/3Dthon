@@ -74,7 +74,7 @@ module.exports.render = function(destination, request, response) {
 
 module.exports.signup = function(request, response) {
     if (request.user) {
-	this.render("dashboard", request, response);
+	this.render("competitions", request, response);
     }	
     else {
 	response.render("signup", {

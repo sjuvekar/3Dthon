@@ -24,7 +24,7 @@ passport.use(new GoogleStrategy({
 module.exports.googleAuth = function() { return passport.authenticate("google"); };
 module.exports.googleAuthWithCallback = function() { 
     return passport.authenticate("google", { 
-	successReturnToOrRedirect: "/dashboard", 
+	successReturnToOrRedirect: "/competitions",
 	failureRedirect: "/signup" 
     });
 };

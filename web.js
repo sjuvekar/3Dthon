@@ -56,7 +56,6 @@ app.get('/signup', function(request, response) { route.signup(request, response)
 app.get('/signout', function(request, response) { route.signout(request, response); });
 
 // User dashboard, profile and competitions
-app.get('/dashboard', function(request, response) { route.render("competitions", request, response); });
 app.get("/profile", function(request, response) { route.render("profile", request, response); });
 app.get("/competitions", function(request, response) { route.render("competitions", request, response); });
 app.get("/rankings", function(request, response) { route.render("rankings", request, response); });

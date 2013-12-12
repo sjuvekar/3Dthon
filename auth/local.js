@@ -44,7 +44,7 @@ module.exports.local_signup = function(request, response) {
 				    if (err) 
 					response.render("signup", {signup_flash_msg: err.message, flash_msg: request.flash("error")});
 				    else
-					response.redirect("/dashboard");
+					response.redirect("/competitions")
 				});
 			    }
 			});
@@ -53,7 +53,7 @@ module.exports.local_signup = function(request, response) {
 
 // Export signin function
 module.exports.local_signin = function() {
-    return passport.authenticate("local", { successRedirect: "/dashboard",
+    return passport.authenticate("local", { successRedirect: "/competitions",
 					    failureRedirect: "/signup",
 					    badRequestMessage: "Could not log in. Have you signed up?", 
 					    failureFlash: true

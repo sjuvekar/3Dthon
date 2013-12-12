@@ -29,8 +29,6 @@ module.exports.render = function(destination, request, response) {
 			response.render(destination, {
 			    user: request.user,
 			    competitions: result,
-			    topNav: topNav.createTopNav(destination),
-			    sideNav: sideNav.createSideNav(destination) 
 			}); 
 		    }
 		});

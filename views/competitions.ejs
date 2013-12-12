@@ -69,11 +69,17 @@
           <ul class="main-menu large" id="nav">
             <li><a href="/competitions">Home</a></li>                
             <li><a href="/competitions">Competitions</a></li>
-            <li><a href="/profile">Profile</a></li>
             <li><a href="/newContest">Host a Contest</a></li>
             <li><a href="http://blog.3dthon.com" target="_blank">Blog</a></li> 
-	    			<li><a href="/signout">Sign Out</a></li>
-	  			</ul>
+	    <li class="dropdown">
+	      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+		<%= user.name %> <span class="caret"></span>
+	      </a>
+	      <ul class="dropdown-menu">
+		<li><a href="/profile">Profile</a></li>
+		<li><a href="/signout">Sign Out</a></li>
+	      </ul>
+	  </ul>
           <!-- END NAVIGATION MENU ITEMS -->				
 
         </div><!-- END TWELVE COLUMNS -->	
@@ -154,6 +160,7 @@
 		<script type="text/javascript" src="js/SmoothScroll.js"></script>   
 		<script type="text/javascript" src="js/jquery.flexslider-min.js"></script>    
 		<script type="text/javascript" src="js/isotope.js"></script>    
+		<script type="text/javascript" src="js/bootstrap.js"></script>   
 		<script type="text/javascript" src="js/bootstrap-modal.js"></script>   
 		<script type="text/javascript" src="js/shortcodes.js"></script>     
 		<script type="text/javascript" src="js/scripts.js"></script>          

@@ -58,11 +58,9 @@ app.get('/signout', function(request, response) { route.signout(request, respons
 // User dashboard, profile and competitions
 app.get("/profile", function(request, response) { route.render("profile", request, response); });
 app.get("/competitions", function(request, response) { route.render("competitions", request, response); });
-app.get("/rankings", function(request, response) { route.render("rankings", request, response); });
-app.get("/forums", function(request, response) { route.render("forums", request, response); });
 app.get("/newContest", function(request, response) { route.render("newContest", request, response); });
 
-// Get a particular competition. TODO 
+// Get a particular competition 
 app.get("/competitions/:id?", function(request, response) { route.render("existingContest", request, response); });
 
 // Privacy and Terms, Static pages

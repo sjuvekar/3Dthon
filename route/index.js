@@ -3,6 +3,7 @@ var flash = require('connect-flash')
   , topNav = require('./topNav')
   , sideNav = require('./sideNav')
   , main = require('./main')
+  , competitions = require('./competitions')
   , Contest = require("../models/contest")
   , User = require("../models/user")
   , Contest = require("../models/contest");
@@ -18,22 +19,14 @@ module.exports.render = function(destination, request, response) {
 			request.flash("error", login_flash_msg);
 			response.redirect("/signup");
     }
-    else {
+    else if (destination === "competitions") competitions.render(request, response)
+    else {	
 	var imageurl = request.user.imageurl;
 	if (!imageurl) 
 	    request.user.imageurl = default_imageurl;
-	if (["settings", "profile", "competitions", "existingContest"].indexOf(destination) != -1) {
-	    if (destination === "competitions") {
-		Contest.find({}, function(err, result) {
-		    if (!err) {
-			response.render(destination, {
-			    user: request.user,
-			    competitions: result,
-			}); 
-		    }
-		});
-	    }
-	    else if (destination === "existingContest") {
+	
+	if (["settings", "profile", "existingContest"].indexOf(destination) != -1) {
+	    if (destination === "existingContest") {
 		Contest.findById(request.params.id, function(err, result) {
 		    console.log(result);
 		    if (!err) {
@@ -70,6 +63,8 @@ module.exports.render = function(destination, request, response) {
 }
 
 
+// Whenever redirected to sign-up page, either by clicking "Sign Up" 
+// Or redirected with error-flash
 module.exports.signup = function(request, response) {
     if (request.user) {
 	this.render("competitions", request, response);
@@ -82,6 +77,7 @@ module.exports.signup = function(request, response) {
     }
 };
 
+// Click "Sign Out"
 module.exports.signout = function(request, response) {
     request.logout();
     response.redirect("/");

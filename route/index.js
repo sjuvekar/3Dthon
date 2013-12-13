@@ -4,13 +4,13 @@ var flash = require('connect-flash')
   , sideNav = require('./sideNav')
   , main = require('./main')
   , competitions = require('./competitions')
+  , existingContest = require('./existingContest')
   , Contest = require("../models/contest")
   , User = require("../models/user")
   , Contest = require("../models/contest");
  
 // Basic user checking and responding otherwise
 var login_flash_msg = "You must be logged in to proceed";
-var default_imageurl = "https://dl.dropboxusercontent.com/u/69791784/3Dthon/assets/img/user-icon.png";
 var default_contest_imageurl = "https://dl.dropboxusercontent.com/u/69791784/3Dthon/assets/img/host-contest.png";
 
 module.exports.render = function(destination, request, response) {
@@ -20,27 +20,11 @@ module.exports.render = function(destination, request, response) {
 			response.redirect("/signup");
     }
     else if (destination === "competitions") competitions.render(request, response)
+    else if (destination === "existingContest") existingContest.render(request, response)
+				 
     else {	
-	var imageurl = request.user.imageurl;
-	if (!imageurl) 
-	    request.user.imageurl = default_imageurl;
-	
-	if (["settings", "profile", "existingContest"].indexOf(destination) != -1) {
-	    if (destination === "existingContest") {
-		Contest.findById(request.params.id, function(err, result) {
-		    console.log(result);
-		    if (!err) {
-			response.render(destination, {
-			    user: request.user,
-			    competitions: result,
-			    topNav: topNav.createTopNav(destination),
-			    sideNav: sideNav.createSideNav(destination) 
-			});
-		    }
-		});
-	    }
-	    else {
-		Contest.find({"createdBy": request.user._id}, function(err, result) { 
+	if (["settings", "profile"].indexOf(destination) != -1) {
+	    Contest.find({"createdBy": request.user._id}, function(err, result) { 
 		    if(!err) {
 			response.render(destination, {
 			    user: request.user,
@@ -50,7 +34,6 @@ module.exports.render = function(destination, request, response) {
 			}); 
 		    }
 		});
-	    }
 	}
 	else {
 	    response.render(destination, {

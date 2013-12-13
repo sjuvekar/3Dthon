@@ -6,12 +6,12 @@ module.exports.render = function(request, response) {
     var imageurl = request.user.imageurl;
     if (!imageurl) 
 	request.user.imageurl = default_imageurl;
-
-    Contest.find({}, function(err, result) {
+    
+    Contest.findById(request.params.id, function(err, result) {
 	if (!err) {
-	    response.render("competitions", {
+	    response.render("existingContest", {
 		user: request.user,
-		competitions: result, 
+		competition: result, 
 	    });
 	}
     });

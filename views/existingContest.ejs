@@ -34,22 +34,32 @@
     <link id="primary_color_scheme" href="/css/colors/blue.css" rel="stylesheet" type="text/css"/>      
 
     <style>
-      .col{
-        margin-top: -99999px;
-        padding-top: 99999px;
-        margin-bottom: -99999px;
-        padding-bottom: 99999px;
+
+      .local-blog-background {
+         background: url("/images/blog/blog1.jpg");
+      }
+      
+      .local-blog-image {
+         min-height: 60%;
+         width: auto; 
+         display: block;
+         margin-left: auto;
+         margin-right: auto;
       }
 
-      .col-wrap{  
-        overflow: hidden;   
-      }  
-
-      .competition-img {
-        background: #FFDD00
+      .local-border-bottom {
+          border-bottom: 3px solid #666;
+          margin-bottom: 20px;
+          padding-bottom: 40px;
+          position: relative;
       }
-      </style>
-    
+
+      .local-bigfont {
+          font-size: 200%;
+      }
+
+    </style>
+
   </head>
   
   <body class="multipage">
@@ -90,26 +100,82 @@
     
     <div class="page-wrap">
     	<div class="page multipage">
-      	<div class="container">
-        	<div class="row">
-          	<div class="sixteen columns">
+      	  
+	  <div class="container">
+            <div class="row">
+              <div class="sixteen columns">
             	<div class="title">
-              	<h1><%= competition.title %></h1>
+              	  <h1><%= competition.title %></h1>
+		</div>
               </div>
             </div>
           </div>
-        </div>
         <!-- END OF CONTAINER -->
         
-        <div class="container-fluid">
-
+	<!-- START CONTAINER -->
+	<div class="container">
+	  
+	  <!-- START TWELVE COLUMNS -->
           <div class="sixteen columns">
+
+	    <!-- START POST -->
+            <div class="post">
+              
+	      <!-- START POST MEDIA -->
+	      <div class="post-media">
+
+                   <div class="flexslider">
+                     <ul class="slides">
+                            <li>
+			      <div class="local-blog-background">
+                                <img src="<%= competition.images[0] %>" class="local-blog-image" alt="portfolio slider" />
+                                <p class="flex-caption-details"><%= competition.title %></p>
+			      </div>
+                            </li>
+			    
+                     </ul>
+                   </div>
+              </div>
+	      <!-- END POST MEDIA -->
+	      
+	      <!-- START POST CONTENT -->
+	      <div class="post-content local-border-bottom">
+		
+		<div class="local-bigfont">
+		  <%- competition.description %>
+		</div>
+
+	      </div>
+	      <!-- END POST CONTENT --> 
+
+	      <div class="comments local-border-bottom">
+		<h3 class="heading">Reward</h3>
+		<div class="local-bigfont">
+		  <%= competition.reward %>
+		</div>
+	      </div>
+
+	      <div class="comments local-border-bottom">
+		<h3 class="heading">Ends At</h3>
+		<div class="local-bigfont">
+		  <%= competition.endTime %>
+		</div>
+
+	      </div>
+
+	    </div>
+	    <!-- END POST -->
 	    
-          </div>
-        </div>
-        <!-- END OF CONTAINER -->
-        
-      </div>
+	    <div class="title">
+              <a href="/competitions"><h2> &lt;&lt;Back </h2></a>
+	    </div>
+
+	  </div> 
+	  <!-- END TWELVE COLUMNS -->
+	  
+	</div>
+	<!-- END CONTAINER -->
+	</div>
     </div>
     
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>  

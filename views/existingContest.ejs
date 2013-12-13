@@ -1,337 +1,136 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>
-    </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- Le styles -->
-    <link href="/css/bootstrap.css" rel="stylesheet">
-    <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic" rel="stylesheep" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800" rel="stylesheep" type="text/css">
-    <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fsocial-buttons.css">
-    
-    <style>
-      body { 
-	padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-	font-family: 'Open Sans', Helvetica, Arial, sans-serif; 
-      }
-    </style>
-    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js">
-      </script>
-    <![endif]-->
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="ico/favicon.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
-    <style>
-    </style>
-  </head>
-  <body>
-    <div class="navbar-wrapper">
-      <div class="container">
-	<div class="navbar navbar-inverse"> 
-    	  <div class="navbar-inner">
-    			<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-    				<span class="icon-bar"></span>
-    				<span class="icon-bar"></span>
-    				<span class="icon-bar"></span>
-    			</button>
-    			<a class="brand" href="/">3Dthon</a>
-    			<div class="nav-collapse collapse">
-    				<p class="navbar-text pull-right">
-    					Logged in as
-    					<a href="#" class="navbar-link" style="color: #EEEEEE"><%= user.name %></a>
-					<img src=<%= user.imageurl %> height="32" width="32"> 
-    				</p>
-    				<ul class="nav">
-    				  <%- topNav %>
- 				</ul>
-    			</div>
-    			<!--/.nav-collapse -->
-	  </div>
-	</div>
-      </div>
-    </div>
-    
-    <div class="container">
-      <div class="row">
-    	<div class="span3">
-    	  <div class="well sidebar-nav">
-    	    <ul class="nav nav-list">
-    	      <%- sideNav %>
-    	    </ul>
-    	  </div>
-    	  <!--/.well -->
-    	</div>
-    	<!--/span-->
-    	<div class="span9 sidebar-nav">
-    	  <p class="lead">
-	    <div class="row">
-	      <div class="span2">
-		<img src="<%= competitions.images[0] %>" height=100% width=100%>
-	      </div>
-	      <div class="span6">
-		<h1>
-    		  <%= competitions.title %>
-		</h1>
-	      </div>
-	    </div>
-    	  </p>
-	  
-	  <hr class="featurette-divider">
-	  
-	  <p class="lead">
-	    <pre>
-	      <%- competitions.description %>
-	    </pre>
-	  </p>
+<!DOCTYPE HTML>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de">  <!--<![endif]-->
+<head>
 
-	  <p class="lead">
-	    <b>Reward: </b>
-	    <%= competitions.reward %>
-	  </p>
+	<!-- META DATA -->
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+	<meta charset="UTF-8">
+	<title>3Dthon: Competitions</title>
+    <meta name="description" content="3D printing competition"/>
+    <meta name="keywords" content="3D printing, 3D printer"/>
+    <meta name="author" content="RamSud Labs"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-	  <p class="lead">
-	    <b>Ends at: </b>
-	    <%= competitions.endTime %>
-	  </p>
-
-    	</div>
-      </div>
-      
-    </div>
-
-    <hr class="featurette-divider">
-    
-    <footer>
-      <p>
-    	© RamSud Labs, 2013
-      </p>
-    </footer>
-    
-    <!--/.fluid-container-->
-
-    <style>
-      
-      .sidebar-nav {
-        padding: 9px 0;
-        margin-top: 40px;
-      }
-      
-      @media (max-width: 980px) {
-        /* Enable use of floated navbar text */
-        .navbar-text.pull-right {
-          float: none;
-          padding-left: 5px;
-          padding-right: 5px;
-        }
-      }
-
-            /* GLOBAL STYLES
-      -------------------------------------------------- */
-      /* Lighter body text */
-      
-      body {
-        color: #5a5a5a;
-      }
-      
-      
-      
-      /* CUSTOMIZE THE NAVBAR
-      -------------------------------------------------- */
-      
-      /* Special class on .container surrounding .navbar, used for positioning it into place. */
-      .navbar-wrapper {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 10;
-        margin-top: 20px;
-        margin-bottom: -90px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
-      }
-      
-      /* Remove border and change up box shadow for more contrast */
-      .navbar .navbar-inner {
-        border: 0;
-        -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.25);
-        -moz-box-shadow: 0 2px 10px rgba(0,0,0,.25);
-        box-shadow: 0 2px 10px rgba(0,0,0,.25);
-      }
-      
-      /* Downsize the brand/project name a bit */
-      .navbar .brand {
-        padding: 14px 20px 16px; /* Increase vertical padding to match navbar links */
-        font-size: 16px;
-        font-weight: bold;
-        text-shadow: 0 -1px 0 rgba(0,0,0,.5);
-      }
-      
-      /* Navbar links: increase padding for taller navbar */
-      .navbar .nav > li > a {
-        padding: 15px 20px;
-      }
-      
-      /* Offset the responsive button for proper vertical alignment */
-      .navbar .btn-navbar {
-        margin-top: 10px;
-      }
-      
+    <!-- USUAL BOOTSTRAP -->
+    <link rel="stylesheet" href="/css/bootstrap.css" type="text/css">
+	<!-- JARVIS THEME STYLESHEETS -->
      
-      
-      /* Featurettes
-      ------------------------- */
-      
-      .featurette-divider {
-        margin: 80px 0; /* Space out the Bootstrap <hr> more */
-      }
-      
-      .featurette {
-        padding-top: 120px; /* Vertically center images part 1: add padding above and below text. */
-        overflow: hidden; /* Vertically center images part 2: clear their floats. */
-      }
-      
-      .featurette-image {
-        margin-top: -120px; /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
-      }
-      
-      /* Give some space on the sides of the floated elements so text doesn't run right into it. */
-      .featurette-image.pull-left {
-        margin-right: 40px;
-      }
-      
-      .featurette-image.pull-right {
-        margin-left: 40px;
-      }
-      
-      /* Thin out the marketing headings */
-      .featurette-heading {
-        font-size: 50px;
-        font-weight: 300;
-        line-height: 1;
-        letter-spacing: -1px;
-	'Ubuntu', Helvetica, Arial, sans-serif;
-      }
-      
-      
-      
-      /* RESPONSIVE CSS
-      -------------------------------------------------- */
-      
-      @media (max-width: 980px) {
-      
-        .container.navbar-wrapper {
-          margin-bottom: 0;
-          width: auto;
-        }
-      
-        .navbar-inner {
-          border-radius: 0;
-          margin: -20px 0;
-        }
-      
-        .carousel .item {
-          height: 500px;
-        }
-      
-        .carousel img {
-          width: auto;
-          height: 500px;
-        }
-      
-        .featurette {
-          height: auto;
-          padding: 0;
-        }
-      
-        .featurette-image.pull-left,
-        .featurette-image.pull-right {
-          display: block;
-          float: none;
-          max-width: 40%;
-          margin: 0 auto 20px;
-        }
-              
-      }
-      
-      
-      @media (max-width: 767px) {
+	<link rel="stylesheet" href="/css/skeleton.css" type="text/css">
+	<link rel="stylesheet" href="/css/reset.css" type="text/css">    
+	<link rel="stylesheet" href="/css/style.css" type="text/css">
+	<link rel="stylesheet" href="/css/social.css" type="text/css">             
+	<link rel="stylesheet" href="/css/flexslider.css" type="text/css">	
+	<link rel="stylesheet" href="/css/prettyPhoto.css" type="text/css" media="screen"/><!-- PrettyPhoto -->	
+	<link rel="stylesheet" href="/css/font-awesome.css" type="text/css"/><!-- PrettyPhoto -->    
+	<link rel="stylesheet" href="/css/shortcodes.css" type="text/css"/> 	
+	<link rel="stylesheet" href="/css/media.css"><!-- Media Queries -->
 
-        .navbar-inner {
-          margin: -20px;
-        }
-      
-        .carousel {
-          margin-left: -20px;
-          margin-right: -20px;
-        }
-      
-        .carousel .item {
-          height: 300px;
-        }
-      
-        .carousel img {
-          height: 300px;
-        }
-      
-        .carousel-caption {
-          width: 65%;
-          padding: 0 70px;
-          margin-top: 100px;
-        }
-      
-        .carousel-caption h1 {
-          font-size: 30px;
-        }
-      
-        .carousel-caption .lead,
-        .carousel-caption .btn {
-          font-size: 18px;
-        }
-      
-
-        .featurette-heading {
-          font-size: 30px;
-	  'Ubuntu', Helvetica, Arial, sans-serif;
-        }
-      
-        .featurette .lead {
-          font-size: 18px;
-          line-height: 1.5;
-        }
-        
-      }
-
-      .competition-list li {
-	  width: 100%;
-	  border-radius:5px;
-	  position:relative;
-	  padding:1em;
-	  background:#fcfcfc;
-	  box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.2);
-	  -o-box-shadow: 0px 0px 1px 1px  rgba(0,0,0,0.2);
-	  -moz-box-shadow: 0px 0px 1px 1px  rgba(0,0,0,0.2);
-	}
     
-      .competition-list li a,
-      .competition-list li a:visited {
-          color: #444444;
-      }
-    </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
-    </script>
-    <script src="/js/bootstrap.js">
-    </script>
-    <script>
+    
+    <link id="layout_color" href="/css/light.css" rel="stylesheet" type="text/css"/>  
+    <link id="primary_color_scheme" href="/css/colors/blue.css" rel="stylesheet" type="text/css"/>      
 
-    </script>
-  </body>
+    <style>
+      .col{
+        margin-top: -99999px;
+        padding-top: 99999px;
+        margin-bottom: -99999px;
+        padding-bottom: 99999px;
+      }
+
+      .col-wrap{  
+        overflow: hidden;   
+      }  
+
+      .competition-img {
+        background: #FFDD00
+      }
+      </style>
+    
+  </head>
+  
+  <body class="multipage">
+    <nav class="light">
+      <!-- START CONTAINER -->	
+      <div class="container clearfix">			
+        <div class="four columns">			
+          <!-- START LOGO -->	
+          <div class="logo large">
+            <a href="/"><img src="/images/logo.png" title="logo" alt="Logo"/></a>
+          </div>
+          <!-- END LOGO -->			
+        </div><!-- END FOUR COLUMNS -->   
+          
+        <div class="twelve columns">            		
+          <!-- START NAVIGATION MENU ITEMS -->
+          <ul class="main-menu large" id="nav">
+            <li><a href="/competitions">Home</a></li>                
+            <li><a href="/competitions">Competitions</a></li>
+            <li><a href="/newContest">Host a Contest</a></li>
+            <li><a href="http://blog.3dthon.com" target="_blank">Blog</a></li> 
+	    <li class="dropdown">
+	      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+		<%= user.name %> <span class="caret"></span>
+	      </a>
+	      <ul class="dropdown-menu">
+		<li><a href="/profile">Profile</a></li>
+		<li><a href="/signout">Sign Out</a></li>
+	      </ul>
+	    </li>
+	    <li><img src="<%= user.imageurl %>" alt="pic" class="social-icon" /></div></li>
+	  </ul>
+          <!-- END NAVIGATION MENU ITEMS -->				
+
+        </div><!-- END TWELVE COLUMNS -->	
+      </div><!-- END CONTAINER -->	
+    </nav>
+    
+    <div class="page-wrap">
+    	<div class="page multipage">
+      	<div class="container">
+        	<div class="row">
+          	<div class="sixteen columns">
+            	<div class="title">
+              	<h1><%= competition.title %></h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- END OF CONTAINER -->
+        
+        <div class="container-fluid">
+
+          <div class="sixteen columns">
+	    
+          </div>
+        </div>
+        <!-- END OF CONTAINER -->
+        
+      </div>
+    </div>
+    
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>  
+		<script type="text/javascript" src="/js/jquery.queryloader2.js"></script>        
+		<script type="text/javascript" src="/js/modernizr-2.6.2.min.js"></script>  
+		<script type="text/javascript" src="/js/jquery.fitvids.js"></script>  
+		<script type="text/javascript" src="/js/jquery.appear.js"></script>  
+		<script type="text/javascript" src="/js/jquery.slabtext.min.js"></script>   
+		<script type="text/javascript" src="/js/jquery.fittext.js"></script>   
+		<script type="text/javascript" src="/js/jquery.easing.min.js"></script>
+		<script type="text/javascript" src="/js/jquery.parallax-1.1.3.js"></script>
+		<script type="text/javascript" src="/js/jquery.prettyPhoto.js"></script>
+		<script type="text/javascript" src="/js/jquery.sticky.js"></script>
+		<script type="text/javascript" src="/js/selectnav.min.js"></script>    
+		<script type="text/javascript" src="/js/SmoothScroll.js"></script>   
+		<script type="text/javascript" src="/js/jquery.flexslider-min.js"></script>    
+		<script type="text/javascript" src="/js/isotope.js"></script>    
+		<script type="text/javascript" src="/js/bootstrap.js"></script>   
+		<script type="text/javascript" src="/js/bootstrap-modal.js"></script>   
+		<script type="text/javascript" src="/js/shortcodes.js"></script>     
+		<script type="text/javascript" src="/js/scripts.js"></script>          
+
+ 	</body>
 </html>

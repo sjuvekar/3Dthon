@@ -245,6 +245,19 @@ html[xmlns] .slides {
 	font-size: 14px;
 	margin: 0 !important;
 }
+.flex-caption-details {
+	width: auto;
+	padding: 0 15px;
+	line-height: 40px;
+	margin: 0;
+	position: absolute;
+	bottom: 0;
+	background: rgba(0,0,0,.8);
+	color: #fff !important;
+	text-shadow: 0 0 0 rgba(0,0,0,0);
+	font-size: 14px;
+	margin: 0 !important;
+}
 .testimonial-slider .flex-direction-nav li a, .twitter-slider .flex-direction-nav li a {
 	width: 32px;
 	height: 32px;

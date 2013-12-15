@@ -263,7 +263,7 @@ a:focus {
           border-radius: 500px;
 }
 
-.row {
+.row-bootstrap {
   margin-left: -20px;
   *zoom: 1;
 }

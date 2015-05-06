@@ -18,11 +18,6 @@ module.exports.createSideNav = function(destination) {
 	ret_str = ret_str + " class='active'";
     ret_str = ret_str + "><a href='/profile'>My Profile</a></li>\n";
     
-    ret_str = ret_str + "<li";
-    if (destination === "profile#settings")
-	ret_str = ret_str + " class='active'";
-    ret_str = ret_str + "><a href='/profile#settings'>Settings</a></li>\n";
-
     ret_str = ret_str + "<li class='nav-header'>Want to host a competition?</li>\n";
     
     ret_str = ret_str + "<li";

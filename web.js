@@ -20,7 +20,6 @@ app.set('view engine', 'ejs');
 app.set('port', process.env.PORT || 8080);
 
 // App configuration
-app.use(allowCrossDomain)
 app.use(express.static(__dirname + "/assets"));
 app.use(express.cookieParser());
 app.use(express.bodyParser());

@@ -27,17 +27,6 @@ app.use(express.session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-app.use(function (req, res, next) {
-
-    // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'https://s3-us-west-1.amazonaws.com');
-
-    // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET');
-
-    // Pass to next layer of middleware
-    next();
-});
 
 http.createServer(app).listen(app.get('port'), function() {
       console.log("Listening on " + app.get('port'));

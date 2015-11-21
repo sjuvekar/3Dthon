@@ -1,0 +1,4 @@
+git checkout master
+git merge staging
+git push production-heroku master:master
+heroku config:push # To push new .env

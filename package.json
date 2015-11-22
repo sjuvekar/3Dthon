@@ -1,24 +1,26 @@
 {
   "name": "3Dthon",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "description": "Turning 3D printing into competition",
   "main": "web.js",
   "dependencies": {
-    "pg": "~2.3.1",
-    "ejs": "~0.8.4",
-    "express": "~3.3.4",
-    "async": "~0.2.9",
-    "passport": "~0.1.16",
-    "passport-facebook": "~1.0.0",
-    "passport-twitter": "~1.0.0",
-    "passport-google-oauth": "~0.1.5",
-    "passport-local": "~0.1.5",
-    "connect-flash": "~0.1.1",  
-    "mongoose": "~3.6.3",
-    "bcrypt": "~0.7.6"
+    "async": "1.5.0",
+    "bcrypt": "0.8.5",
+    "connect-flash": "*",
+    "ejs": "2.3.4",
+    "http": "*",
+    "https": "*",
+    "express": "4.13.3",
+    "mongoose": "4.2.7",
+    "passport": "0.3.2",
+    "passport-facebook": "2.0.0",
+    "passport-google-oauth": "0.2.0",
+    "passport-local": "^1.0.0",
+    "passport-twitter": "*",
+    "pg": "4.4.3"
   },
   "engines": {
-    "node": "0.10.12",
-    "npm": "1.2.30"
+    "node": "4.2.2",
+    "npm": "2.14.7"
   }
 }

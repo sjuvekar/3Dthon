@@ -2,6 +2,7 @@
   "name": "3Dthon",
   "version": "1.0.1",
   "description": "Turning 3D printing into competition",
+  
   "main": "web.js",
   "dependencies": {
     "async": "1.5.0",

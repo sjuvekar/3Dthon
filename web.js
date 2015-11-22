@@ -12,6 +12,7 @@ var async   = require('async')
   , passport = require('passport')
   , flash = require('connect-flash')
   , mongooseDB = require('./models/mongooseDB')
+  , session = require('express-session')
   , bodyParser = require('body-parser')
   , cookieParser = require('cookie-parser');
 
@@ -24,7 +25,7 @@ app.set('port', process.env.PORT || 8080);
 app.use(express.static(__dirname + "/assets"));
 app.use(cookieParser());
 app.use(bodyParser());
-app.use(express.session({ secret: 'keyboard cat' }));
+app.use(session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());

@@ -15,7 +15,7 @@
     "express-session": "^1.12.1",
     "http": "*",
     "https": "*",
-    "mongoose": "4.2.7",
+    "mongoose": "5.8.11",
     "mongodb-uri": "*",
     "passport": "0.3.2",
     "passport-facebook": "2.0.0",
